@@ -12,7 +12,7 @@ import lombok.Data;
  * 
  * @author lmt
  * @email komoji587@gmail.com
- * @date 2022-11-02 15:55:09
+ * @date 2022-11-02 17:22:15
  */
 @Data
 @TableName("sku_sale_attr_value")
