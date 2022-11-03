@@ -22,5 +22,6 @@
     <module>mall-admin</module>
     <module>renren-generator</module>
     <module>mall_common</module>
+    <module>mall-gateway</module>
 </modules>
 </project>

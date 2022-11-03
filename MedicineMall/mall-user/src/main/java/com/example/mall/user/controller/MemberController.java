@@ -3,6 +3,7 @@ package com.example.mall.user.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.example.mall.user.feign.OrderFeignService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,18 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    @Autowired
+    private OrderFeignService orderFeignService;
+
+    @RequestMapping("/orders")
+    public R test(){
+        MemberEntity member=new MemberEntity();
+        member.setNickname("张三");
+        R userOrders = orderFeignService.userOrders();
+
+        return R.ok().put("user",member).put("orders",userOrders.get("orders"));
+
+    }
     /**
      * 列表
      */
