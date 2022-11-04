@@ -1,6 +1,7 @@
 package com.example.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -31,6 +32,12 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+
+    @RequestMapping("list/tree")
+    public R list(){
+        List<CategoryEntity> data=categoryService.listWithTree();
+        return R.ok().put("data",data);
+    }
     /**
      * 列表
      */
