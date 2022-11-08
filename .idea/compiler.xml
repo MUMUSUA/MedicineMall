@@ -14,12 +14,14 @@
         <module name="mall-product" />
         <module name="renren-generator" />
         <module name="mall-gateway" />
+        <module name="mall-auth-server" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="mall-admin" options="-parameters" />
+      <module name="mall-auth-server" options="-parameters" />
       <module name="mall-gateway" options="-parameters" />
       <module name="mall-order" options="-parameters" />
       <module name="mall-product" options="-parameters" />
