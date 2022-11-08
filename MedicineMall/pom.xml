@@ -23,5 +23,6 @@
     <module>renren-generator</module>
     <module>mall_common</module>
     <module>mall-gateway</module>
+    <module>mall-auth-server</module>
 </modules>
 </project>

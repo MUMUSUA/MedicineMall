@@ -25,6 +25,10 @@ spring:
             - Path=/api/**
           filters:
             - RewritePath=/api/?(?<segment>.*),/mall-admin/$\{segment}
+        - id: auth_route
+            uri: 1b://mall-auth-server
+            predicates:
+              - Host=auth.example.com
 
 
 
@@ -34,3 +38,11 @@ spring:
     name: mall-gateway
 server:
   port: 10004
+
+#Alibaba OSS配置
+alibaba:
+  cloud:
+    access-key: LTAI5t8Mniv4n3hanc6oonRi
+    secret-key: NemsnmjkrR7e4pMA0uFJHbBCp14SeE
+    oss:
+      endpoint: oss-cn-beijing.aliyuncs.com
