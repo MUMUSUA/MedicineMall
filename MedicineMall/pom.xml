@@ -24,5 +24,6 @@
     <module>mall_common</module>
     <module>mall-gateway</module>
     <module>mall-auth-server</module>
+    <module>mall-thirdParty</module>
 </modules>
 </project>
