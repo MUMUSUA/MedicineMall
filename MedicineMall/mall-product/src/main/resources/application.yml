@@ -25,9 +25,9 @@ logging:
     com.example.mall: debug
 
 #Alibaba OSS配置
-alibaba:
-  cloud:
-    access-key: LTAI5t8Mniv4n3hanc6oonRi
-    secret-key: NemsnmjkrR7e4pMA0uFJHbBCp14SeE
-    oss:
-      endpoint: oss-cn-beijing.aliyuncs.com
+#alibaba:
+#  cloud:
+#    access-key: LTAI5t8Mniv4n3hanc6oonRi
+#    secret-key: NemsnmjkrR7e4pMA0uFJHbBCp14SeE
+#    oss:
+#      endpoint: oss-cn-beijing.aliyuncs.com
