@@ -57,12 +57,15 @@ header {
 
 .top-3 {
   width: 1365px;
-  background: #E93854;
+  background: white;
   position: relative; }
-  .top-3 .img_1 {
-    width: 990px;
+
+  .image{
+    width: 1360px;
     height: 475px;
-    margin: 0 auto; }
+    margin-left: 2.5px;
+    margin-top: 3px;
+  }
   .top-3 #sign {
     width: 350px;
     height: 428px;

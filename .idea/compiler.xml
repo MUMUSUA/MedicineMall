@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_ADDITIONAL_VM_OPTIONS" value="-Djps.track.ap.dependencies=false" />
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -10,6 +11,7 @@
         <module name="mall-admin" />
         <module name="mall-user" />
         <module name="mall_common" />
+        <module name="mall-thirdParty" />
         <module name="mall-order" />
         <module name="mall-product" />
         <module name="renren-generator" />
@@ -25,6 +27,7 @@
       <module name="mall-gateway" options="-parameters" />
       <module name="mall-order" options="-parameters" />
       <module name="mall-product" options="-parameters" />
+      <module name="mall-thirdParty" options="-parameters" />
       <module name="mall-user" options="-parameters" />
       <module name="mall_common" options="-parameters" />
       <module name="renren-generator" options="-parameters" />

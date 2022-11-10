@@ -49,10 +49,17 @@ class MallProductApplicationTests {
 ////            // 填写Bucket名称，例如examplebucket。
 ////            String bucketName = "medicine--mall";
 //            // 填写Object完整路径，完整路径中不能包含Bucket名称，例如exampledir/exampleobject.txt。
+
 //            String objectName = "2.jpg";
 //            // 填写本地文件的完整路径，例如D:\\localpath\\examplefile.txt。
 //            // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。
 //            String filePath= "C:\\Users\\Wedimeker\\OneDrive\\文档\\实训项目\\img\\1.jpg";
+
+//            String objectName = "5.jpg";
+//            // 填写本地文件的完整路径，例如D:\\localpath\\examplefile.txt。
+//            // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。
+//            String filePath= "D:\\手机照片\\tute\\tu1.jpg";
+
 //
 //            // 创建OSSClient实例。
 ////            OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
