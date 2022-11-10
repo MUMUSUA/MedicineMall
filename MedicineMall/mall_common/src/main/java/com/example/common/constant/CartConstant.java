@@ -3,8 +3,8 @@ package com.example.common.constant;
 /**
  * @Description: 购物车常量
  * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-06-30 17:39
+ * @author: marui
+ * @createTime: 2022-11-07 19:39
  **/
 public class CartConstant {
 
