@@ -46,6 +46,14 @@
         header-align="center"
         align="center"
         label="品牌logo地址">
+        <template slot-scope="scope">
+          <!-- <el-image
+          style="width: 100px; height: 1px"
+          :src="scope.row.logo"
+          fit="fill"/> -->
+          <img :src="scope.row.logo" style="width: 100px; height: 80px">
+        </template>
+
       </el-table-column>
       <el-table-column
         prop="descript"
@@ -73,13 +81,13 @@
       <el-table-column
         prop="firstLetter"
         header-align="center"
-        sortable
         align="center"
         label="检索首字母">
       </el-table-column>
       <el-table-column
         prop="sort"
         header-align="center"
+        sortable
         align="center"
         label="排序">
       </el-table-column>

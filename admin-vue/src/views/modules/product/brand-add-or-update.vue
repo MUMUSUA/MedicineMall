@@ -8,7 +8,8 @@
       <el-input v-model="dataForm.name" placeholder="品牌名"></el-input>
     </el-form-item>
     <el-form-item label="品牌logo地址" prop="logo">
-      <el-input v-model="dataForm.logo" placeholder="品牌logo地址" ></el-input>
+      <!-- <el-input v-model="dataForm.logo" placeholder="品牌logo地址" ></el-input> -->
+      <single-upload v-model="dataForm.logo"></single-upload>
     </el-form-item>
     <el-form-item label="介绍" prop="descript">
       <el-input v-model="dataForm.descript" placeholder="介绍"></el-input>
@@ -16,8 +17,8 @@
     <el-form-item label="显示状态" prop="showStatus">
       <el-switch
           v-model="dataForm.showStatus"
-          active-text="不显示"
-          inactive-text="显示"
+          active-text="显示"
+          inactive-text="不显示"
           active-color="#13ce66"
           inactive-color="#ff4949"
           :active-value="1"
@@ -39,7 +40,9 @@
 </template>
 
 <script>
+import singleUpload from '../../../components/upload/singleUpload.vue'
   export default {
+  components: { singleUpload },
     data () {
       return {
         visible: false,
@@ -48,9 +51,9 @@
           name: '',
           logo: '',
           descript: '',
-          showStatus: '',
+          showStatus: '1',
           firstLetter: '',
-          sort: ''
+          sort: '1'
         },
         dataRule: {
           name: [
@@ -66,10 +69,20 @@
             { required: true, message: '显示状态[0-不显示；1-显示]不能为空', trigger: 'blur' }
           ],
           firstLetter: [
-            { required: true, message: '检索首字母不能为空', trigger: 'blur' }
+            { validator:(rule,value,callback)=>{
+              if(value=="") {callback(new Error("首字母必须填写！"));}
+              else if(! /^[a-zA-A]$/.test(value))
+              callback(new Error("首字母必须在a-z或A-Z之间！"));
+              else callback();
+            }, trigger: 'blur' }
           ],
           sort: [
-            { required: true, message: '排序不能为空', trigger: 'blur' }
+            {   validator:(rule,value,callback)=>{
+              if(value=="") {callback(new Error("必须填写排序！"));}
+              else if(! /^[1-9]+[0-9]*$/.test(value))
+              callback(new Error("排序数必须为正整数！"));
+              else callback();
+            }, trigger: 'blur' }
           ]
         }
       }

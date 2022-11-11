@@ -50,6 +50,7 @@ import {
   Tree,
   Alert,
   Slider,
+  Image,
   Icon,
   Row,
   Col,
@@ -119,6 +120,7 @@ Vue.use(Tag)
 Vue.use(Tree)
 Vue.use(Alert)
 Vue.use(Slider)
+Vue.use(Image)
 Vue.use(Icon)
 Vue.use(Row)
 Vue.use(Col)
