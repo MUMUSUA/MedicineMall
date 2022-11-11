@@ -41,7 +41,7 @@
 
         <dependency>
             <groupId>com.example.mall</groupId>
-            <artifactId>mall_common</artifactId>
+            <artifactId>mall-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
