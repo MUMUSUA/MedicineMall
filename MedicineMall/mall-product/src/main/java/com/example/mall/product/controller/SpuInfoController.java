@@ -3,6 +3,7 @@ package com.example.mall.product.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.example.mall.product.vo.SpuSaveVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,17 +55,19 @@ public class SpuInfoController {
         return R.ok().put("spuInfo", spuInfo);
     }
 
+
     /**
      * 保存
      */
     @RequestMapping("/save")
     @RequiresPermissions("product:spuinfo:save")
-    public R save(@RequestBody SpuInfoEntity spuInfo){
-		spuInfoService.save(spuInfo);
+    public R save(@RequestBody SpuSaveVo vo){
+        //spuInfoService.save(spuInfo);
+
+        spuInfoService.savespuInfo(vo);
 
         return R.ok();
     }
-
     /**
      * 修改
      */

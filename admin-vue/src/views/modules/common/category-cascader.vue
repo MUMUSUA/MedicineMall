@@ -11,7 +11,7 @@
     <el-cascader
       filterable
       clearable 
-      placeholder="试试搜索：手机"
+      placeholder="试试搜索：感冒"
       v-model="paths"
       :options="categorys"
       :props="setting"
@@ -54,7 +54,7 @@ export default {
     paths(v){
       this.$emit("update:catelogPath",v);
       //还可以使用pubsub-js进行传值
-      this.PubSub.publish("catPath",v);
+      PubSub.publish("catPath",v);
     }
   },
   //方法集合

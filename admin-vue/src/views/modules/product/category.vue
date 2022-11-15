@@ -257,29 +257,30 @@ else{
         // this.category.sort = data.category.sort;
         // this.category.showStatus = data.category.showStatus;
 
+        
 
         } )
       },   
       //更改分类详情
       editCategory(){
         //解构
-        var {catId,name,icon,productUnit} =this.category;
-        this.$http({
-        url: this.$http.adornUrl('/product/category/update'),
-        method: 'post',
-        data: this.$http.adornData({catId,name,icon,productUnit}, false)
-         }).then(({data}) => {  
-          this.$message({
-          message: "分类修改成功",
+      var { catId, name, icon, productUnit } = this.category;
+      this.$http({
+        url: this.$http.adornUrl("/product/category/update"),
+        method: "post",
+        data: this.$http.adornData({ catId, name, icon, productUnit }, false)
+      }).then(({ data }) => {
+        this.$message({
+          message: "菜单修改成功",
           type: "success"
         });
         //关闭对话框
         this.dialogVisible = false;
         //刷新出新的菜单
-        this.menus=this.getCategories();
+        this.getCategories();
         //设置需要默认展开的菜单
         this.expandedKey = [this.category.parentCid];
-         })
+      });
       }
     ,  
     //拖拽

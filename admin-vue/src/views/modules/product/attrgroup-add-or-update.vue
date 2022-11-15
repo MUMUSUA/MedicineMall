@@ -52,6 +52,7 @@ export default {
       categorys: [],
       catelogPath: [],
       dataForm: {
+        id:0,
         attrGroupId: 0,
         attrGroupName: "",
         sort: "",
@@ -89,6 +90,7 @@ export default {
       });
     },
     init(id) {
+      
       this.dataForm.attrGroupId = id || 0;
       this.visible = true;
       this.$nextTick(() => {
@@ -102,6 +104,7 @@ export default {
             params: this.$http.adornParams()
           }).then(({ data }) => {
             if (data && data.code === 0) {
+              this.dataForm.id=1;
               this.dataForm.attrGroupName = data.attrGroup.attrGroupName;
               this.dataForm.sort = data.attrGroup.sort;
               this.dataForm.descript = data.attrGroup.descript;
@@ -131,6 +134,7 @@ export default {
               sort: this.dataForm.sort,
               descript: this.dataForm.descript,
               icon: this.dataForm.icon,
+              catelogPath:this.catelogPath,
               catelogId: this.catelogPath[this.catelogPath.length-1]
             })
           }).then(({ data }) => {
