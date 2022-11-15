@@ -4,6 +4,9 @@ import com.example.common.to.SkuReductionTo;
 import com.example.common.to.SpuBoundTo;
 import com.example.common.utils.R;
 import com.example.mall.product.entity.*;
+import com.example.mall.product.feign.SaleFeignService;
+import com.example.mall.product.feign.SearchFeignService;
+import com.example.mall.product.feign.StockFeignService;
 import com.example.mall.product.service.*;
 import com.example.mall.product.vo.*;
 import org.apache.commons.lang.StringUtils;
@@ -51,7 +54,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     private SkuSaleAttrValueService skuSaleAttrValueService;
 
     @Autowired
-    private CouponFeignService couponFeignService;
+    private SaleFeignService saleFeignService;
 
     @Autowired
     private BrandService brandService;
@@ -60,7 +63,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     private CategoryService categoryService;
 
     @Autowired
-    private WareFeignService wareFeignService;
+    private StockFeignService stockFeignService;
 
     @Autowired
     private SearchFeignService searchFeignService;
@@ -121,7 +124,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         SpuBoundTo spuBoundTo = new SpuBoundTo();
         BeanUtils.copyProperties(bounds,spuBoundTo);
         spuBoundTo.setSpuId(spuInfoEntity.getId());
-        R r = couponFeignService.saveSpuBounds(spuBoundTo);
+        R r = saleFeignService.saveSpuBounds(spuBoundTo);
 
         if (r.getCode() != 0) {
             log.error("远程保存spu积分信息失败");
@@ -180,7 +183,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                 BeanUtils.copyProperties(item,skuReductionTo);
                 skuReductionTo.setSkuId(skuId);
                 if (skuReductionTo.getFullCount() > 0 || skuReductionTo.getFullPrice().compareTo(BigDecimal.ZERO) == 1) {
-                    R r1 = couponFeignService.saveSkuReduction(skuReductionTo);
+                    R r1 = saleFeignService.saveSkuReduction(skuReductionTo);
                     if (r1.getCode() != 0) {
                         log.error("远程保存sku积分信息失败");
                     }

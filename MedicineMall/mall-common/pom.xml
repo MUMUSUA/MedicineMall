@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>mall_common</artifactId>
+    <artifactId>mall-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mall_common</name>
     <description>公共依赖类</description>

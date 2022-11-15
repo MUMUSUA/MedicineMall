@@ -26,5 +26,7 @@
     <module>mall-auth-server</module>
     <module>mall-thirdParty</module>
     <module>mall-cart</module>
+    <module>mall-sale</module>
+    <module>mall-stock</module>
 </modules>
 </project>
