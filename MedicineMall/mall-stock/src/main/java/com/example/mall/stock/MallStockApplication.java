@@ -1,8 +1,13 @@
 package com.example.mall.stock;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+
+@MapperScan("com.example.mall.stock.dao")
+@EnableDiscoveryClient
 @SpringBootApplication
 public class MallStockApplication {
 

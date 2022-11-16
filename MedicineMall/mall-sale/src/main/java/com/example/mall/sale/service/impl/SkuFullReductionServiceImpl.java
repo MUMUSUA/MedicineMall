@@ -47,7 +47,7 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
     @Override
     public void saveSkuReduction(SkuReductionTo skuReductionTo) {
         //1、保存满减打折、会员价
-        //1、1）、sku的优惠、满减等信息：gulimall_sms--->sms_sku_ladder、sms_sku_full_reduction、sms_member_price
+        //1、1）、sku的优惠、满减等信息：mall_sms--->sku_ladder、sku_full_reduction、member_price
         SkuLadderEntity skuLadderEntity = new SkuLadderEntity();
         BeanUtils.copyProperties(skuReductionTo,skuLadderEntity);
         skuLadderEntity.setAddOther(skuReductionTo.getCountStatus());
@@ -66,7 +66,7 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
 
         //3、sms_member_price
         List<MemberPrice> memberPrice = skuReductionTo.getMemberPrice();
-
+        BeanUtils.copyProperties(skuReductionTo.getMemberPrice(),memberPrice);
         List<MemberPriceEntity> collect = memberPrice.stream().map(mem -> {
             MemberPriceEntity memberPriceEntity = new MemberPriceEntity();
             memberPriceEntity.setSkuId(skuReductionTo.getSkuId());

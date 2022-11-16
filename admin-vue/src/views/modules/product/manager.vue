@@ -13,7 +13,7 @@
           <el-input-number style="width:160px" v-model="dataForm.price.max" :min="0"></el-input-number>
         </el-form-item>
         <el-form-item label="检索">
-          <el-input style="width:160px" v-model="dataForm.key" clearable></el-input>
+          <el-input style="width:160px" v-model="dataForm.key" clearable @clear="getDataList"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="searchSkuInfo">查询</el-button>

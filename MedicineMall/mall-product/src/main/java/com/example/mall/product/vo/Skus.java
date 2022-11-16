@@ -1,5 +1,7 @@
 package com.example.mall.product.vo;
 
+
+import com.example.common.to.MemberPrice;
 import lombok.Data;
 
 import java.math.BigDecimal;
