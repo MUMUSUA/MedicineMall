@@ -12,6 +12,13 @@ spring:
           filters:
             - RewritePath=/api/?(?<segment>.*),/$\{segment}
 
+        - id: stock_route
+          uri: lb://mall-stock
+          predicates:
+            - Path=/api/stock/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
         - id: mall-thirdParty
           uri:  lb://mall-thirdParty
           predicates:
