@@ -1,4 +1,4 @@
-package java.com.example.mall.product.vo;
+package com.example.mall.product.vo;
 
 import lombok.Data;
 import lombok.ToString;

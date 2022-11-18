@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.common.utils.PageUtils;
 import com.example.mall.product.entity.SkuInfoEntity;
 
-import java.com.example.mall.product.vo.SkuItemVo;
+import com.example.mall.product.vo.SkuItemVo;
 import java.util.Map;
 
 /**
