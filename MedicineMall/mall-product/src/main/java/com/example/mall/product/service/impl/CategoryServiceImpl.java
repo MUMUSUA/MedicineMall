@@ -1,7 +1,10 @@
 package com.example.mall.product.service.impl;
 
+import com.example.mall.product.service.CategoryBrandRelationService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,10 +19,14 @@ import com.example.mall.product.dao.CategoryDao;
 import com.example.mall.product.entity.CategoryEntity;
 import com.example.mall.product.service.CategoryService;
 
+import javax.annotation.Resource;
+
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
+    @Resource
+    CategoryBrandRelationService categoryBrandRelationService;
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
@@ -60,6 +67,64 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         //MyBatis Plus 中定义的方法，通用查询操作 deleteBatchIds 通过多个ID进行删除
         baseMapper.deleteBatchIds(asList);
     }
+
+    @Override
+    public Long[] findCatelogId(Long categoryId) {
+        List<Long> list=new ArrayList<>();
+        CategoryEntity categoryEntity=getById(categoryId);
+        if(categoryEntity.getParentCid()!=0){
+            Long parentId=categoryEntity.getParentCid();
+            if(getById(parentId).getParentCid() !=0 )
+            {
+                list.add(getById(parentId).getParentCid());
+            }
+            list.add(categoryEntity.getParentCid());;
+        }
+        list.add(categoryId);
+        Long[] path = new Long[list.size()];
+        int i=0;
+        for (Long item :list){
+            path[i]=item;
+            i++;
+
+        }
+        return path;
+    }
+
+    @Override
+    public void updateCascade(CategoryEntity category) {
+        this.updateById(category);
+        categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
+    }
+
+    @Override
+    public Long[] findCatelogPath(Long catelogId) {
+        List<Long> paths = new ArrayList<>();
+
+        //递归查询是否还有父节点
+        List<Long> parentPath = findParentPath(catelogId, paths);
+
+        //进行一个逆序排列
+        Collections.reverse(parentPath);
+
+        return (Long[]) parentPath.toArray(new Long[parentPath.size()]);
+    }
+
+    private List<Long> findParentPath(Long catelogId, List<Long> paths) {
+
+        //1、收集当前节点id
+        paths.add(catelogId);
+
+        //根据当前分类id查询信息
+        CategoryEntity byId = this.getById(catelogId);
+        //如果当前不是父分类
+        if (byId.getParentCid() != 0) {
+            findParentPath(byId.getParentCid(), paths);
+        }
+
+        return paths;
+    }
+
 
     //递归查找所有菜单的子菜单
     private List<CategoryEntity> getChildrens(CategoryEntity root,List<CategoryEntity> all){

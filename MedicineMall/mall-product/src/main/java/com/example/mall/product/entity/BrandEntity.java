@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import lombok.Data;
-import org.hibernate.validator.constraints.URL;
+//import org.hibernate.validator.constraints.URL;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotBlank;
 
@@ -34,7 +34,7 @@ public class BrandEntity implements Serializable {
 	/**
 	 * 品牌logo地址
 	 */
-	@URL(message = "品牌logo地址必须为url格式")
+	//@URL(message = "品牌logo地址必须为url格式")
 	private String logo;
 	/**
 	 * 介绍

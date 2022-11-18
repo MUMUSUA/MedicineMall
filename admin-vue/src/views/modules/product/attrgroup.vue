@@ -7,7 +7,7 @@
       <div class="mod-config">
         <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
           <el-form-item>
-            <el-input v-model="dataForm.key" placeholder="参数名" clearable></el-input>
+            <el-input v-model="dataForm.key" placeholder="参数名" clearable @clear="getDataList"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button @click="getDataList()">查询</el-button>
@@ -23,19 +23,17 @@
               @click="deleteHandle()"
               :disabled="dataListSelections.length <= 0"
             >批量删除</el-button> -->
-
             <el-button
 
               type="primary"
-              @click="addOrUpdateHandle()"
+              @click="addOrUpdateHandle(0)"
             >新增</el-button>
             <el-button
-     
+   
               type="danger"
               @click="deleteHandle()"
               :disabled="dataListSelections.length <= 0"
             >批量删除</el-button>
-
           </el-form-item>
         </el-form>
         <el-table
@@ -102,7 +100,7 @@ import Category from "../common/category";
 import AddOrUpdate from "./attrgroup-add-or-update";
 import RelationUpdate from "./attr-group-relation";
 export default {
-  //  import引入的组件需要注入到对象中才能使用
+  //import引入的组件需要注入到对象中才能使用
   components: { Category, AddOrUpdate, RelationUpdate },
   props: {},
   data() {
@@ -125,7 +123,7 @@ export default {
     this.getDataList();
   },
   methods: {
-    //  处理分组与属性的关联
+    //处理分组与属性的关联
     relationHandle(groupId) {
       this.relationVisible = true;
       this.$nextTick(() => {
@@ -134,12 +132,12 @@ export default {
     },
     //感知树节点被点击
     treenodeclick(data, node, component) {
-      if (node.level === 3) {
+      if (node.level == 3) {
         this.catId = data.catId;
-        this.getDataList();  // 重新查询
+        this.getDataList(); //重新查询
       }
     },
-    getAllDataList()  {
+    getAllDataList(){
       this.catId = 0;
       this.getDataList();
     },
@@ -148,7 +146,7 @@ export default {
       this.dataListLoading = true;
       this.$http({
         url: this.$http.adornUrl(`/product/attrgroup/list/${this.catId}`),
-        method: 'get',
+        method: "get",
         params: this.$http.adornParams({
           page: this.pageIndex,
           limit: this.pageSize,
@@ -192,26 +190,26 @@ export default {
       var ids = id
         ? [id]
         : this.dataListSelections.map(item => {
-          return item.attrGroupId;
+            return item.attrGroupId;
           });
       this.$confirm(
-        `确定对[id=${ids.join(",")}]进行[${id ? '删除' : '批量删除'}]操作?`,
-        '提示',
+        `确定对[id=${ids.join(",")}]进行[${id ? "删除" : "批量删除"}]操作?`,
+        "提示",
         {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
           type: "warning"
         }
       ).then(() => {
         this.$http({
-          url: this.$http.adornUrl('/product/attrgroup/delete'),
-          method: 'post',
+          url: this.$http.adornUrl("/product/attrgroup/delete"),
+          method: "post",
           data: this.$http.adornData(ids, false)
         }).then(({ data }) => {
           if (data && data.code === 0) {
             this.$message({
-              message: '操作成功',
-              type: `success`,
+              message: "操作成功",
+              type: "success",
               duration: 1500,
               onClose: () => {
                 this.getDataList();
