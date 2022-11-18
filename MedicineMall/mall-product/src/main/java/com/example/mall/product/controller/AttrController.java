@@ -1,8 +1,11 @@
 package com.example.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.example.mall.product.entity.ProductAttrValueEntity;
+import com.example.mall.product.service.ProductAttrValueService;
 import com.example.mall.product.vo.AttrRespVo;
 import com.example.mall.product.vo.AttrVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -29,6 +32,18 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    private ProductAttrValueService productAttrValueService;
+    /**
+     *  获取spu规格
+     */
+    @GetMapping("/base/listforspu/{spuId}")
+    public R baseAttrlistforspu(@PathVariable("spuId") Long spuId){
+
+        List<ProductAttrValueEntity> entities = productAttrValueService.baseAttrListforspu(spuId);
+
+        return R.ok().put("data",entities);
+    }
     /**
      * 列表
      */
@@ -87,6 +102,19 @@ public class AttrController {
 
         return R.ok();
     }
+
+
+    ///product/attr/update/{spuId} 规格维护中修改规格参数
+    @PostMapping("/update/{spuId}")
+    //@RequiresPermissions("product:attr:update")
+    public R updateSpuAttr(@PathVariable("spuId") Long spuId,
+                           @RequestBody List<ProductAttrValueEntity> entities){
+
+        productAttrValueService.updateSpuAttr(spuId,entities);
+
+        return R.ok();
+    }
+
 
     /**
      * 删除

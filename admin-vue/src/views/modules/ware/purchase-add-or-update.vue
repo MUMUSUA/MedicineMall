@@ -76,7 +76,7 @@
               params: this.$http.adornParams()
             }).then(({data}) => {
               if (data && data.code === 0) {
-                console.log(data.purchase)
+               
                 this.dataForm.assigneeId = data.purchase.assigneeId
                 this.dataForm.assigneeName = data.purchase.assigneeName
                 this.dataForm.phone = data.purchase.phone
@@ -100,6 +100,7 @@
               url: this.$http.adornUrl(`/stock/purchase/${!this.dataForm.id ? 'save' : 'update'}`),
               method: 'post',
               data: this.$http.adornData({
+                 
                 'id': this.dataForm.id || undefined,
                 'assigneeId': this.dataForm.assigneeId,
                 'assigneeName': this.dataForm.assigneeName,

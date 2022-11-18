@@ -105,11 +105,12 @@ export default {
         //先对表单的baseAttrs进行初始化
         data.data.forEach(item => {
           let attrArray = [];
+          if (item.attrs!=null) 
           item.attrs.forEach(attr => {
             let v = "";
             if (_this.spuAttrsMap["" + attr.attrId]) {
               v = _this.spuAttrsMap["" + attr.attrId].attrValue.split(";");
-              if (v.length == 1) {
+              if (v.length == 1 && attr.valueType == 0) {
                 v = v[0] + "";
               }
             }
