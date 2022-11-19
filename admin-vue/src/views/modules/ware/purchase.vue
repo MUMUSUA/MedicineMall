@@ -2,7 +2,7 @@
   <div class="mod-config">
     <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
       <el-form-item label="状态">
-        <el-select style="width:120px;" v-model="dataForm.status" placeholder="请选择状态" clearable>
+        <el-select style="width:120px;" v-model="dataForm.status" placeholder="请选择状态" clearable @clear="getDataList()">
           <el-option label="新建" :value="0"></el-option>
           <el-option label="已分配" :value="1"></el-option>
           <el-option label="已领取" :value="2"></el-option>
@@ -11,7 +11,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="关键字">
-        <el-input style="width:120px;" v-model="dataForm.key" placeholder="参数名" clearable></el-input>
+        <el-input style="width:120px;" v-model="dataForm.key" placeholder="参数名" clearable  @clear="getDataList()"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>

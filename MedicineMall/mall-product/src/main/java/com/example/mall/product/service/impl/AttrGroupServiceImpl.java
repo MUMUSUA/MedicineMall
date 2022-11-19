@@ -4,10 +4,7 @@ package com.example.mall.product.service.impl;
 import com.example.mall.product.entity.AttrEntity;
 import com.example.mall.product.service.AttrService;
 import com.example.mall.product.vo.AttrGroupWithAttrsVo;
-<<<<<<< HEAD
-=======
 import com.example.mall.product.vo.SpuItemAttrGroupVo;
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,8 +92,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
         return new PageUtils(page);
     }
-<<<<<<< HEAD
-=======
+
 
 
     @Override
@@ -108,5 +104,5 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
         return vos;
     }
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+
 }

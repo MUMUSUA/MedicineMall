@@ -1,35 +1,20 @@
 package com.example.auth.controller;
-<<<<<<< HEAD
+
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-=======
 import com.example.auth.feign.ThirdPartyFeignService;
 import com.example.common.utils.R;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.UUID;
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 
 @Controller
 public class LoginController {
 
-<<<<<<< HEAD
-    @GetMapping("/login.html")
-    public String loginPage(){
-        return "login";
-    }
 
-    @GetMapping("/reg.html")
-    public String regPage(){
-        return "reg";
-    }
-=======
-//    @Autowired
     @Resource
     ThirdPartyFeignService thirdPartyFeignService;
 
@@ -62,5 +47,5 @@ public class LoginController {
         return R.ok();
     }
 
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+
 }

@@ -3,18 +3,13 @@ package com.example.mall.product.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-<<<<<<< HEAD
-=======
 import com.example.mall.product.entity.ProductAttrValueEntity;
 import com.example.mall.product.service.ProductAttrValueService;
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 import com.example.mall.product.vo.AttrRespVo;
 import com.example.mall.product.vo.AttrVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import com.example.mall.product.entity.AttrEntity;
 import com.example.mall.product.service.AttrService;
 import com.example.common.utils.PageUtils;

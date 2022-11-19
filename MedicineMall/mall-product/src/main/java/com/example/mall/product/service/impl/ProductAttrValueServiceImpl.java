@@ -36,8 +36,7 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
         this.saveBatch(collect);
     }
 
-<<<<<<< HEAD
-=======
+
     @Override
     public List<ProductAttrValueEntity> baseAttrListforspu(Long spuId) {
         List<ProductAttrValueEntity> attrValueEntityList = this.baseMapper.selectList(
@@ -66,7 +65,7 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
         //批量新增
         this.saveBatch(collect);
     }
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+
 
 
 }

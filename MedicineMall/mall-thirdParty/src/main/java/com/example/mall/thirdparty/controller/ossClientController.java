@@ -1,24 +1,12 @@
 package com.example.mall.thirdparty.controller;
-
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
-<<<<<<< HEAD
-import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PolicyConditions;
-import com.example.common.utils.R;
-=======
-import com.aliyun.oss.model.PolicyConditions;
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-<<<<<<< HEAD
-import java.io.ByteArrayInputStream;
-=======
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -39,11 +27,7 @@ public class ossClientController {
 
 
     @RequestMapping("oss/policy")
-<<<<<<< HEAD
-    public R policy(){
-=======
     public Map<String, String> policy(){
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
         // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
 //        String accessId = "yourAccessKeyId";
 //        String accessKey = "yourAccessKeySecret";
@@ -64,21 +48,13 @@ public class ossClientController {
         // 创建ossClient实例。
         //OSS ossClient = new OSSClientBuilder().build(endpoint, accessId, accessKey);
         try {
-<<<<<<< HEAD
-            long expireTime = 300;
-=======
             long expireTime = 30;
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
             long expireEndTime = System.currentTimeMillis() + expireTime * 1000;
             Date expiration = new Date(expireEndTime);
             PolicyConditions policyConds = new PolicyConditions();
             policyConds.addConditionItem(PolicyConditions.COND_CONTENT_LENGTH_RANGE, 0, 1048576000);
             policyConds.addConditionItem(MatchMode.StartWith, PolicyConditions.COND_KEY, dir);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
             String postPolicy = ossClient.generatePostPolicy(expiration, policyConds);
             byte[] binaryData = postPolicy.getBytes("utf-8");
             String encodedPolicy = BinaryUtil.toBase64String(binaryData);
@@ -95,18 +71,10 @@ public class ossClientController {
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
         } catch (Exception e) {
             // Assert.fail(e.getMessage());
             System.out.println(e.getMessage());
         }
-<<<<<<< HEAD
-        return  R.ok().put("data",respMap);
-=======
         return  respMap;
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
     }
 }

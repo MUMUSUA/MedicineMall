@@ -4530,10 +4530,6 @@ mso-fareast-font-family:宋体;mso-hansi-font-family:Calibri;mso-bidi-font-famil
 OLE_LINK17"><span style="mso-bookmark:OLE_LINK18"><span lang="EN-US" style="mso-bidi-font-size:10.5pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
 宋体;mso-hansi-font-family:Calibri;mso-bidi-font-family:宋体;mso-font-kerning:0pt"><span
 							style="mso-spacerun:yes">&nbsp;</span>
-<<<<<<< HEAD
-							<o:p></o:p>
-=======
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 							</span>
 							</span>
 							</span>
@@ -5963,11 +5959,7 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 	<div class="desc">欢迎注册</div>
 	<div class="dfg">
 		<span>已有账号？</span>
-<<<<<<< HEAD
-		<a href="http://auth.mall.com/login.html">请登录</a>
-=======
 		<a href="http://localhost:63342/Mall/mall-auth-server/templates/login.html">请登录</a>
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 	</div>
 </header>
 <section>
@@ -6000,11 +5992,7 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 		<div class="register-box">
 			<label class="other_label">
 				<span>中国 0086∨</span>
-<<<<<<< HEAD
-				<input name="phone" class="phone" id="phoneNum" maxlength="20" type="text" placeholder="建议使用常用手机">
-=======
 				<input name="phone" class="phone" id="phoneNum" maxlength="11" type="text" placeholder="建议使用常用手机">
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 			</label>
 			<div class="tips" style="color: red" th:text="${errors != null ? (#maps.containsKey(errors, 'phone') ? errors.phone : '') : ''}">
 
@@ -6277,15 +6265,7 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 				//正在倒计时中
 			} else {
 				//1、给指定手机号发送验证码
-<<<<<<< HEAD
-				$.get("/sms/sendCode?phone=" + $("#phoneNum").val(),function (data) {
-					if(data.code != 0) {
-						alert(data.msg);
-					}
-				});
-=======
 				$.get("/send_sms/sendcode?phone=" + $("#phoneNum").val());
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 				timeoutChangeStyle();
 			}
 		});
