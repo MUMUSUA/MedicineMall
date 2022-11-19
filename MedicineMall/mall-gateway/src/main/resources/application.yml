@@ -5,14 +5,73 @@ spring:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
-        - id: test_route
-          uri: https://www.baidu.com
+        - id: product_route
+          uri: lb://mall-product
           predicates:
-            - Query=url,baidu
-        - id: qq_route
-          uri: https://www.qq.com
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
+        - id: stock_route
+          uri: lb://mall-stock
           predicates:
-            - Query=url,qq
+            - Path=/api/stock/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
+        - id: mall-thirdParty
+          uri:  lb://mall-thirdParty
+          predicates:
+            - Path=/api/thirdParty/**
+          filters:
+            - RewritePath=/api/thirdParty?(?<segment>.*),/$\{segment}
+
+        - id: user_route
+          uri: lb://mall-user
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
+        - id: admin_route
+          uri: lb://mall-admin
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/mall-admin/$\{segment}
+
+        - id: order_route
+          uri: lb://mall-order
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
+        - id: mall_host_route
+          uri: lb://mall-product
+          predicates:
+            - Host=mall.com
+
+        - id: mall_cart_route
+          uri: lb://mall-cart
+          predicates:
+            - Host=cart.mall.com
+
+        - id: mall_search_route
+          uri: lb://mall-sarch
+          predicates:
+            - Host=search.mall.com    -
+
+
+
+#        - id: auth_route
+#            uri: 1b://mall-auth-server
+#            predicates:
+#              - Host=auth.example.com
+
+
+
+
 
 
 
@@ -20,3 +79,11 @@ spring:
     name: mall-gateway
 server:
   port: 10004
+
+#Alibaba OSS配置
+alibaba:
+  cloud:
+    access-key: LTAI5t8Mniv4n3hanc6oonRi
+    secret-key: NemsnmjkrR7e4pMA0uFJHbBCp14SeE
+    oss:
+      endpoint: oss-cn-beijing.aliyuncs.com

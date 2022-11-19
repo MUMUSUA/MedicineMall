@@ -1,6 +1,7 @@
 package com.example.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -31,6 +32,12 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+
+    @RequestMapping("list/tree")
+    public R list(){
+        List<CategoryEntity> data=categoryService.listWithTree();
+        return R.ok().put("data",data);
+    }
     /**
      * 列表
      */
@@ -71,7 +78,7 @@ public class CategoryController {
     @RequestMapping("/update")
     @RequiresPermissions("product:category:update")
     public R update(@RequestBody CategoryEntity category){
-		categoryService.updateById(category);
+		categoryService.updateCascade (category);
 
         return R.ok();
     }
@@ -82,7 +89,9 @@ public class CategoryController {
     @RequestMapping("/delete")
     @RequiresPermissions("product:category:delete")
     public R delete(@RequestBody Long[] catIds){
+        //检查待删除的菜单，是否被别的地方引用
 		categoryService.removeByIds(Arrays.asList(catIds));
+        categoryService.removeCategoryByIds(Arrays.asList(catIds));
 
         return R.ok();
     }

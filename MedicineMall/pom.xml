@@ -21,7 +21,12 @@
     <module>mall-user</module>
     <module>mall-admin</module>
     <module>renren-generator</module>
-    <module>mall_common</module>
+    <module>mall-common</module>
     <module>mall-gateway</module>
+    <module>mall-auth-server</module>
+    <module>mall-thirdParty</module>
+    <module>mall-cart</module>
+    <module>mall-sale</module>
+    <module>mall-stock</module>
 </modules>
 </project>
