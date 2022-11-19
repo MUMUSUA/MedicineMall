@@ -57,8 +57,15 @@
         </dependency>
 
         <dependency>
+<<<<<<< HEAD
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-loadbalancer</artifactId>
+=======
+            <groupId>com.example.mall</groupId>
+            <artifactId>mall-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+>>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
         </dependency>
 
 

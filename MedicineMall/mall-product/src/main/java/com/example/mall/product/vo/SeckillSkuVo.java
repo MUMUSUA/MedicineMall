@@ -4,12 +4,15 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+<<<<<<< HEAD
 /**
  * @Description:
  * @Created: with IntelliJ IDEA.
  * @author: 夏沫止水
  * @createTime: 2020-07-10 15:57
  **/
+=======
+>>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 
 @Data
 public class SeckillSkuVo {

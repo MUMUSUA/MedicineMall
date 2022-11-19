@@ -1,16 +1,21 @@
 package com.example.mall.cart.service.impl;
 
+<<<<<<< HEAD
 import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.A;
 import com.example.mall.cart.To.UserInfoTo;
 import com.example.mall.cart.feign.ProductFeignService;
 import com.example.mall.cart.interceptor.CartInterceptor;
 import com.example.mall.cart.service.CartService;
 import com.example.mall.cart.vo.CartItem;
+=======
+import com.example.mall.cart.service.CartService;
+>>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -18,6 +23,8 @@ import java.util.stream.Collectors;
 
 import static com.example.common.constant.CartConstant.CART_PREFIX;
 
+=======
+>>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 /**
  * @Author: marui
  * @Date: 2022/11/16
@@ -27,6 +34,7 @@ import static com.example.common.constant.CartConstant.CART_PREFIX;
 @Service
 @Slf4j
 public class CartServiceImpl implements CartService {
+<<<<<<< HEAD
 
     @Autowired
     StringRedisTemplate redisTemplate;
@@ -69,4 +77,9 @@ public class CartServiceImpl implements CartService {
     }
 
 
+=======
+    @Autowired
+    StringRedisTemplate redisTemplate;
+
+>>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 }

@@ -50,6 +50,7 @@ import {
   Tree,
   Alert,
   Slider,
+  Image,
   Icon,
   Row,
   Col,
@@ -75,9 +76,11 @@ import {
   Loading,
   MessageBox,
   Message,
-  Notification
+  Notification,
+  Divider
 } from 'element-ui'
 
+Vue.use(Divider)
 Vue.use(Pagination)
 Vue.use(Dialog)
 Vue.use(Autocomplete)
@@ -119,6 +122,7 @@ Vue.use(Tag)
 Vue.use(Tree)
 Vue.use(Alert)
 Vue.use(Slider)
+Vue.use(Image)
 Vue.use(Icon)
 Vue.use(Row)
 Vue.use(Col)
