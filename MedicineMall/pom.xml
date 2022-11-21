@@ -28,5 +28,6 @@
     <module>mall-cart</module>
     <module>mall-sale</module>
     <module>mall-stock</module>
+    <module>mall-search</module>
 </modules>
 </project>

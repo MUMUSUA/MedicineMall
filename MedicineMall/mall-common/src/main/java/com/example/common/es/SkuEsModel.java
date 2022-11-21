@@ -33,13 +33,13 @@ public class SkuEsModel {
 
     private Long brandId;
 
-    private Long catalogId;
+    private Long catelogId;
 
     private String brandName;
 
     private String brandImg;
 
-    private String catalogName;
+    private String catelogName;
 
     private List<Attrs> attrs;
 

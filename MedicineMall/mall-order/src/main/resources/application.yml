@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 spring:
   datasource:
     username: root
@@ -23,7 +22,7 @@ mybatis-plus:
       id-type:  auto
 server:
   port: 10003
-=======
+
 #spring:
 #  datasource:
 #    username: root
@@ -43,4 +42,4 @@ server:
 #      id-type:  auto
 #server:
 #  port: 10003
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+

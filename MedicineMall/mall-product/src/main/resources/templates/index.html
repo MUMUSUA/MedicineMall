@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
+
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
-=======
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+
+
+
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<<<<<<< HEAD
-  <title>谷粒商城2020</title>
+
+  <title>医药商城</title>
   <link rel="stylesheet" href="/static/index/css/swiper-3.4.2.min.css">
   <link rel="stylesheet" href="/static/index/css/GL.css">
   <script src="/static/index/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -18,7 +18,7 @@
   <script src="/static/index/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
   <script src="/static/index/js/swiper-3.4.2.min.js"></script>
-=======
+
   <title>Document</title>
   <link rel="stylesheet" href="/index/css/swiper-3.4.2.min.css">
   <link rel="stylesheet" href="/index/css/GL.css">
@@ -27,12 +27,12 @@
   <script src="/index/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
   <script src="/index/js/swiper-3.4.2.min.js"></script>
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+
 
 </head>
 
 <body>
-<<<<<<< HEAD
+
 <div class="top_find">
   <div class="top_find_son">
     <img src="/static/index/img/top_find_logo.png" alt="">
@@ -492,7 +492,7 @@
                         <button>快速充值</button>
                         <span class="p">吃鸡就要快人一步</span>
                       </ul>
-=======
+
   <div class="top_find">
     <div class="top_find_son">
       <img src="index/img/top_find_logo.png" alt="">
@@ -677,64 +677,8 @@
       <div class="header_banner">
         <div class="header_main_left">
           <ul>
-            <li>
-              <a href="#" class="header_main_left_a" ctg-data="3"><b>家用电器</b></a>
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="2,4"><b>手机</b> / <b>运营商</b> / <b>数码</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="6"><b>电脑</b> / <b>办公</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="5,7"><b>家居</b> / <b>家具</b> / <b>家装</b> / <b>厨具</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"  ctg-data="9"><b>男装</b> / <b>女装</b> / <b>童装</b> / <b>内衣</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"  ctg-data="8"><b>美妆个护 </b>/ <b>宠物</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"  ctg-data="11,13,10,15"><b>鞋</b> / <b>箱包</b> / <b>钟表</b> / <b>珠宝</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"  ctg-data="17"> <b>运动</b> / <b>户外</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="16,21"><b>汽车</b> / <b>汽车用品</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="12,18"><b>母婴</b> / <b>玩具乐器</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="14,20"><b>食品</b> / <b>酒类</b> / <b>生鲜</b> / <b>特产</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ><b>礼品鲜花</b> / <b>农资绿植</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"><b>医药保健</b> / <b>计生情趣</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="1"><b>图书</b> / <b>音像</b>/ <b>电子书</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="19"><b>彩票</b> / <b>酒店</b> / <b>旅游</b> / <b>生活</b></a>
-
+            <li th:each="category:${categories}">
+              <a href="#" class="header_main_left_a"  th:attr="ctg-data=${category.catId}"><b th:text="${category.name}">家用电器</b></a>
             </li>
 
           </ul>
@@ -1007,7 +951,7 @@
                           <span class="p">吃鸡就要快人一步</span>
                         </ul>
                       </div>
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+
                     </div>
                   </div>
                 </div>
@@ -1016,7 +960,7 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
+
     </div>
     <div class="header_banner1">
       <a href="#" class="a">
@@ -1118,10 +1062,10 @@
 <script type="text/javascript">
   function search() {
     var keyword=$("#searchText").val()
-    window.location.href="http://search.gulimall.com/list.html?keyword="+keyword;
+    window.location.href="http://search.mall.com/list.html?keyword="+keyword;
   }
 
-  $.get("http://seckill.gulimall.com/getCurrentSeckillSkus", function (res) {
+  $.get("http://seckill.mall.com/getCurrentSeckillSkus", function (res) {
     if (res.data.length > 0) {
       res.data.forEach(function (item) {
         $("<li onclick='toDetail(" + item.skuId + ")'></li>").append($("<img style='width: 130px; height: 130px' src='" + item.skuInfo.skuDefaultImg + "' />"))
@@ -1146,7 +1090,7 @@
 <script type="text/javascript" src="/static/index/js/left,top.js"></script>
 <script type="text/javascript" src="/static/index/js/catalogLoader.js"></script>
 </html>
-=======
+
       <div class="header_banner1">
         <a href="#" class="a">
   						<img src="/index/img/5a1e5ce2N034ce344.png" class="aa" />
@@ -1286,4 +1230,4 @@
 <script type="text/javascript" src="/index/js/left,top.js"></script>
 <script type="text/javascript" src="/index/js/catalogLoader.js"></script>
 </html>
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+

@@ -5,6 +5,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import com.example.mall.product.vo.SkuItemVo;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -91,6 +93,14 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     @Override
     public SkuItemVo item(Long skuId) {
         return null;
+    }
+
+    @Override
+    public List<SkuInfoEntity> getSkusBySpuId(Long spuId) {
+
+        List<SkuInfoEntity> skuInfoEntities = this.list(new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId));
+
+        return skuInfoEntities;
     }
 
 //    @Override

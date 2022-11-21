@@ -5,6 +5,8 @@ import com.example.common.utils.PageUtils;
 import com.example.mall.product.entity.SkuInfoEntity;
 
 import com.example.mall.product.vo.SkuItemVo;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,5 +27,6 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
 
     SkuItemVo item (Long skuId);
 
+    List<SkuInfoEntity> getSkusBySpuId(Long spuId);
 }
 
