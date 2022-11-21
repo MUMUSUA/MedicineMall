@@ -1,6 +1,6 @@
 package com.example.mall.product;
 
-import com.aliyun.oss.*;
+//import com.aliyun.oss.*;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.mall.product.entity.BrandEntity;
 import com.example.mall.product.service.BrandService;

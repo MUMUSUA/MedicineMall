@@ -10,7 +10,7 @@
 
     <artifactId>mall-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mall_common</name>
+    <name>mall-common</name>
     <description>公共依赖类</description>
 
 <dependencies>
