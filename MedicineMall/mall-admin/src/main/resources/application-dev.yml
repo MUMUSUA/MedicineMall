@@ -3,9 +3,9 @@
          type: com.alibaba.druid.pool.DruidDataSource
          druid:
              driver-class-name: com.mysql.cj.jdbc.Driver
-             url: jdbc:mysql://192.168.255.128:3306/mall_admin?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+             url: jdbc:mysql://bj-cdb-83i4eu1y.sql.tencentcdb.com:59644/mall_admin?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
              username: root
-             password: 1021
+             password: gZ97uKA6LY3x$
              initial-size: 10
              max-active: 100
              min-idle: 10

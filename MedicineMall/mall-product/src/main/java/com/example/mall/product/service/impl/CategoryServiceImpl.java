@@ -1,14 +1,18 @@
 package com.example.mall.product.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.example.mall.product.service.CategoryBrandRelationService;
 import com.example.mall.product.vo.Catelog2Vo;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -20,6 +24,7 @@ import com.example.common.utils.Query;
 import com.example.mall.product.dao.CategoryDao;
 import com.example.mall.product.entity.CategoryEntity;
 import com.example.mall.product.service.CategoryService;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 
@@ -29,13 +34,16 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     @Resource
     CategoryBrandRelationService categoryBrandRelationService;
+
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
                 new Query<CategoryEntity>().getPage(params),
                 new QueryWrapper<CategoryEntity>()
         );
-
         return new PageUtils(page);
     }
 
@@ -60,7 +68,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     @Override
     public void removeCategoryByIds(List<Long> asList) {
         //TODO 1、检查待删除的菜单是否被别处引用
-
         /*
          * 逻辑删除
          * 配置全局的逻辑的删除规则
@@ -88,7 +95,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         for (Long item :list){
             path[i]=item;
             i++;
-
         }
         return path;
     }
@@ -102,13 +108,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     @Override
     public Long[] findCatelogPath(Long catelogId) {
         List<Long> paths = new ArrayList<>();
-
         //递归查询是否还有父节点
         List<Long> parentPath = findParentPath(catelogId, paths);
-
         //进行一个逆序排列
         Collections.reverse(parentPath);
-
         return (Long[]) parentPath.toArray(new Long[parentPath.size()]);
     }
 
@@ -122,15 +125,35 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         return categoryEntities;
     }
 
-
-    @Cacheable(value = "category",key = "#root.methodName")
     @Override
-    public Map<String, List<Catelog2Vo>> getCatalogJson() {
+    public Map<String, List<Catelog2Vo>> getCatalogJson(){
+        /**
+         * 1,空结果缓存，解决缓存穿透
+         * 2,设置过期时间（加随机值），解决缓存雪崩
+         * 3,加锁，解决缓存击穿
+         */
+
+        //加入缓存逻辑
+        String categoryJSON=stringRedisTemplate.opsForValue().get("categoryJSON");
+        if(StringUtils.isEmpty(categoryJSON))
+        {
+            //缓存中没有，查询数据库
+            Map<String,List<Catelog2Vo>> catalogJsonFromDb=getCatalogJsonFromDb();
+            //查到的缓存放入缓存,将对象转为JSON放在缓存中,用时再逆转为可用的对象，序列化与反序列化
+            String s = JSON.toJSONString(catalogJsonFromDb);
+            stringRedisTemplate.opsForValue().set("categoryJSON",s,1, TimeUnit.DAYS);
+        }
+        Map<String,List<Catelog2Vo>> catelog=JSON.parseObject(categoryJSON,new TypeReference<Map<String,List<Catelog2Vo>>>(){});
+        return  catelog;
+    }
+
+
+    //@Cacheable(value = "category",key = "#root.methodName")
+    public Map<String, List<Catelog2Vo>> getCatalogJsonFromDb() {
         System.out.println("查询了数据库");
 
         //将数据库的多次查询变为一次
         List<CategoryEntity> selectList = this.baseMapper.selectList(null);
-
         //1、查出所有分类
         //1、1）查出所有一级分类
         List<CategoryEntity> level1Categorys = getParent_cid(selectList, 0L);
@@ -206,7 +229,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                 })
                 .collect(Collectors.toList());
 
-return children;
+                return children;
     }
 
 }
