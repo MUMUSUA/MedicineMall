@@ -39,19 +39,22 @@ public class Cart {
 
     public Integer getCountType() {
         int count=0;
-        if(items!=null && items.size()>0);
-        for (CartItem item : items) {
-            count += 1;
+        if(items!=null && items.size()>0) {
+            for (CartItem item : items) {
+                count += 1;
+            }
         }
         return count;
     }
 
     public BigDecimal getTotalAmount() {
-        BigDecimal amount = new BigDecimal("0.00");
-        if (items != null && items.size() > 0) ;
+        BigDecimal amount = new BigDecimal("0");
+        if (items != null && items.size() > 0)
         {
             for (CartItem item : items) {
-                amount = amount.add(getTotalAmount());
+                if (item.getCheck()) {
+                    amount = amount.add(item.getTotalPrice());
+                }
             }
         }
         //减免价格

@@ -5,8 +5,6 @@ import com.example.common.utils.PageUtils;
 import com.example.mall.product.entity.AttrGroupEntity;
 import com.example.mall.product.vo.AttrGroupWithAttrsVo;
 import com.example.mall.product.vo.SpuItemAttrGroupVo;
-
-
 import java.util.List;
 import java.util.Map;
 

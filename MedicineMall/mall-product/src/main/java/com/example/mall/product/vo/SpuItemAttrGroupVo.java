@@ -1,5 +1,6 @@
 package com.example.mall.product.vo;
 
+import com.example.mall.product.vo.Attr;
 import lombok.Data;
 import lombok.ToString;
 

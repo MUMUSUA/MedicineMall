@@ -1,4 +1,4 @@
-package com.example.mall.product.vo;
+package java.com.example.mall.product.vo;
 
 import com.example.mall.product.entity.SkuImagesEntity;
 import com.example.mall.product.entity.SkuInfoEntity;
