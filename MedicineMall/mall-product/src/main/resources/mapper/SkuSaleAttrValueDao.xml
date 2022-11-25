@@ -31,7 +31,7 @@
             group_concat( DISTINCT info.sku_id ) sku_ids
         FROM
             sku_info info
-                LEFT JOIN sale_attr_value ssav ON ssav.sku_id = info.sku_id
+                LEFT JOIN sku_sale_attr_value ssav ON ssav.sku_id = info.sku_id
         WHERE
             info.spu_id = #{spuId}
         GROUP BY

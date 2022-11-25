@@ -1,13 +1,27 @@
 package com.example.mall.product.service.impl;
 
 
+import com.alibaba.fastjson.TypeReference;
+import com.example.common.utils.R;
+import com.example.mall.product.entity.SkuImagesEntity;
+import com.example.mall.product.entity.SpuInfoDescEntity;
+import com.example.mall.product.feign.SeckillFeignService;
+import com.example.mall.product.service.*;
+import com.example.mall.product.vo.SeckillSkuVo;
+import com.example.mall.product.vo.SkuItemSaleAttrVo;
+import com.example.mall.product.vo.SpuItemAttrGroupVo;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import com.example.mall.product.vo.SkuItemVo;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ThreadPoolExecutor;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,12 +29,28 @@ import com.example.common.utils.PageUtils;
 import com.example.common.utils.Query;
 import com.example.mall.product.dao.SkuInfoDao;
 import com.example.mall.product.entity.SkuInfoEntity;
-import com.example.mall.product.service.SkuInfoService;
+
+import javax.annotation.Resource;
 
 
 @Service("skuInfoService")
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> implements SkuInfoService {
+    @Resource
+    private SkuImagesService skuImagesService;
 
+    @Resource
+    private SpuInfoDescService spuInfoDescService;
+
+    @Resource
+    private AttrGroupService attrGroupService;
+
+    @Resource
+    private SkuSaleAttrValueService skuSaleAttrValueService;
+//    @Autowired
+//    private SeckillFeignService seckillFeignService;
+
+//    @Resource
+//    private ThreadPoolExecutor executor;
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<SkuInfoEntity> page = this.page(
@@ -89,11 +119,34 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         return new PageUtils(page);
     }
 
-
     @Override
-    public SkuItemVo item(Long skuId) {
-        return null;
+    public SkuItemVo item(Long skuId){
+
+
+        SkuItemVo skuItemVo=new SkuItemVo();
+        //sku基本信息获取，sku_info
+        SkuInfoEntity info=getById(skuId);
+        skuItemVo.setInfo(info);
+
+        Long catalogId= info.getCatalogId();
+        Long spuId = info.getSpuId();
+
+
+        //sku图片信息。sku_images
+        List<SkuImagesEntity> imagesEntities=skuImagesService.getImagesBySkuId(skuId);
+        skuItemVo.setImages(imagesEntities);
+        //spu 的销售属性组合
+        List<SkuItemSaleAttrVo> saleAttrVos=skuSaleAttrValueService.getSaleAttrBySpuId(spuId);
+        skuItemVo.setSaleAttr(saleAttrVos);
+        //spu的介绍，spu_info_desc
+        SpuInfoDescEntity spuInfoDescEntity=spuInfoDescService.getById(spuId);
+        skuItemVo.setDesc(spuInfoDescEntity);
+
+        //spu规格参数信息
+        attrGroupService.getAttrGroupWithAttrsBySpuId(spuId,catalogId);
+        return skuItemVo;
     }
+
 
     @Override
     public List<SkuInfoEntity> getSkusBySpuId(Long spuId) {

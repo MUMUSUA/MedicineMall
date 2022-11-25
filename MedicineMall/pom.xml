@@ -29,5 +29,6 @@
     <module>mall-sale</module>
     <module>mall-stock</module>
     <module>mall-search</module>
+    <module>mall-seckill</module>
 </modules>
 </project>
