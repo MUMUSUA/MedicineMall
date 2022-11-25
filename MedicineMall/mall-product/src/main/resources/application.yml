@@ -2,9 +2,9 @@
 spring:
   datasource:
     username: root
-    password: 123456789
+    password: gZ97uKA6LY3x$
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mall_product?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://bj-cdb-83i4eu1y.sql.tencentcdb.com:59644/mall_product?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
   cloud:
     nacos:
       discovery:
@@ -16,6 +16,16 @@ spring:
     name: mall-product
   thymeleaf:
     cache: false
+  redis:
+    host: 192.168.255.128
+    port: 6379
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+      key-prefix: CACHE_
+      use-key-prefix: true
+      cache-null-values: true
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   global-config:
@@ -24,7 +34,7 @@ mybatis-plus:
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 server:
-  port: 20001
+  port: 10012
 logging:
   level:
     com.example.mall: debug

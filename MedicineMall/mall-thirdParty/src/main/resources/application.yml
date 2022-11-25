@@ -12,8 +12,9 @@ alibaba:
     access-key: LTAI5t8Mniv4n3hanc6oonRi
     secret-key: NemsnmjkrR7e4pMA0uFJHbBCp14SeE
     oss:
-      bucket: medicine--mall
       endpoint: oss-cn-beijing.aliyuncs.com
+      bucket: medicine--mall
+
     sms:
       host: https://dfsns.market.alicloudapi.com
       path: /data/send_sms

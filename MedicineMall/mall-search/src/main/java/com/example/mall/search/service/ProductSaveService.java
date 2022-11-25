@@ -1,0 +1,10 @@
+package com.example.mall.search.service;
+
+import com.example.common.es.SkuEsModel;
+
+import java.io.IOException;
+import java.util.List;
+
+public interface ProductSaveService {
+    public boolean productStatusUp(List<SkuEsModel> skuEsModels) throws IOException;
+}

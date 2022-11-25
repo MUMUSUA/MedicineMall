@@ -21,6 +21,7 @@ import java.util.Date;
  *
  * @author Mark sunlightcs@gmail.com
  */
+
 @Data
 @TableName("sys_log")
 public class SysLogEntity implements Serializable {

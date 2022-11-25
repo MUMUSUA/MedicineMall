@@ -42,12 +42,26 @@
                     <groupId>com.baomidou</groupId>
                     <artifactId>mybatis-plus-boot-starter</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.apache.shiro</groupId>
-                    <artifactId>shiro-spring</artifactId>
-                </exclusion>
+
             </exclusions>
         </dependency>
+
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>aliyun-oss-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.aliyun</groupId>
+                    <artifactId>aliyun-java-sdk-core</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>1.0.0</version>
+        </dependency>
+
+
+
+
 
         <!-- 安全框架 Spring Security -->
 <!--        <dependency>-->
@@ -90,6 +104,7 @@
             <version>4.9.28.ALL</version>
         </dependency>
     </dependencies>
+
 
 
 

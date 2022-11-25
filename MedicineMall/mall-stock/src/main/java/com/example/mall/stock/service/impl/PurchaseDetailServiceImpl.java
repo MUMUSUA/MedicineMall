@@ -35,9 +35,9 @@ public class PurchaseDetailServiceImpl extends ServiceImpl<PurchaseDetailDao, Pu
             queryWrapper.eq("status",status);
         }
 
-        String wareId = (String) params.get("wareId");
-        if (!StringUtils.isEmpty(wareId) && !"0".equalsIgnoreCase(wareId)) {
-            queryWrapper.eq("ware_id",wareId);
+        String wareId = (String) params.get("stockId");
+        if (!StringUtils.isEmpty(wareId) ) {
+            queryWrapper.eq("stock_id",wareId);
         }
 
         IPage<PurchaseDetailEntity> page = this.page(

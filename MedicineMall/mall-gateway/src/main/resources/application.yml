@@ -40,6 +40,15 @@ spring:
           filters:
             - RewritePath=/api/?(?<segment>.*),/mall-admin/$\{segment}
 
+
+        - id: order_route
+          uri: lb://mall-order
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
+
         - id: mall_host_route
           uri: lb://mall-product
           predicates:
@@ -51,7 +60,7 @@ spring:
             - Host=cart.mall.com
 
         - id: mall_search_route
-          uri: lb://mall-sarch
+          uri: lb://mall-search
           predicates:
             - Host=search.mall.com
 
@@ -80,3 +89,5 @@ alibaba:
     secret-key: NemsnmjkrR7e4pMA0uFJHbBCp14SeE
     oss:
       endpoint: oss-cn-beijing.aliyuncs.com
+
+      #gZ97uKA6LY3x$

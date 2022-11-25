@@ -1,26 +1,20 @@
 package com.example.mall.product.service.impl;
 
-import com.example.common.utils.R;
-import com.example.mall.product.entity.SkuImagesEntity;
-import com.example.mall.product.vo.SeckillSkuVo;
-import com.example.mall.product.vo.SkuItemVo;
-import com.example.mall.product.vo.SpuItemAttrGroupVo;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.example.mall.product.vo.SkuItemVo;
 import java.math.BigDecimal;
+import com.example.mall.product.vo.SkuItemVo;
+
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.Query;
-
 import com.example.mall.product.dao.SkuInfoDao;
 import com.example.mall.product.entity.SkuInfoEntity;
 import com.example.mall.product.service.SkuInfoService;
@@ -97,9 +91,18 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         return new PageUtils(page);
     }
 
+
     @Override
     public SkuItemVo item(Long skuId) {
         return null;
+    }
+
+    @Override
+    public List<SkuInfoEntity> getSkusBySpuId(Long spuId) {
+
+        List<SkuInfoEntity> skuInfoEntities = this.list(new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId));
+
+        return skuInfoEntities;
     }
 
 //    @Override
@@ -169,4 +172,5 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
 //
 //        return skuItemVo;
 //    }
+
 }

@@ -1,8 +1,9 @@
-package com.example.mall.product.vo;
+package java.com.example.mall.product.vo;
 
 import com.example.mall.product.entity.SkuImagesEntity;
 import com.example.mall.product.entity.SkuInfoEntity;
 import com.example.mall.product.entity.SpuInfoDescEntity;
+
 
 import lombok.Data;
 import lombok.ToString;
@@ -27,7 +28,7 @@ public class SkuItemVo {
     private SpuInfoDescEntity desc;
 
     //5、获取spu的规格参数信息
-    private List<SpuItemAttrGroupVo> groupAttrs;
+    private List<com.example.mall.product.vo.SpuItemAttrGroupVo> groupAttrs;
 
     //6、秒杀商品的优惠信息
     private SeckillSkuVo seckillSkuVo;

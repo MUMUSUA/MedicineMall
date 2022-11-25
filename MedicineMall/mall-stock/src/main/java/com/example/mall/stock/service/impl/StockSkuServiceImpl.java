@@ -8,6 +8,7 @@ import com.example.common.utils.R;
 import com.example.mall.stock.feign.ProductFeignService;
 import com.example.mall.stock.vo.OrderItemVo;
 import com.example.mall.stock.vo.OrderVo;
+import com.example.mall.stock.vo.SkuHasStockVo;
 import com.example.mall.stock.vo.WareSkuLockVo;
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
@@ -105,18 +106,20 @@ public class StockSkuServiceImpl extends ServiceImpl<StockSkuDao, StockSkuEntity
 
     }
 
-//    @Override
-//    public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
-//
-//        List<SkuHasStockVo> skuHasStockVos = skuIds.stream().map(item -> {
-//            Long count = this.baseMapper.getSkuStock(item);
-//            SkuHasStockVo skuHasStockVo = new SkuHasStockVo();
-//            skuHasStockVo.setSkuId(item);
-//            skuHasStockVo.setHasStock(count == null?false:count > 0);
-//            return skuHasStockVo;
-//        }).collect(Collectors.toList());
-//        return skuHasStockVos;
-//    }
+
+
+    @Override
+    public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
+
+        List<SkuHasStockVo> skuHasStockVos = skuIds.stream().map(item -> {
+            Long count = this.baseMapper.getSkuStock(item);
+            SkuHasStockVo skuHasStockVo = new SkuHasStockVo();
+            skuHasStockVo.setSkuId(item);
+            skuHasStockVo.setHasStock(count == null?false:count > 0);
+            return skuHasStockVo;
+        }).collect(Collectors.toList());
+        return skuHasStockVos;
+    }
 
     /**
      * 为某个订单锁定库存

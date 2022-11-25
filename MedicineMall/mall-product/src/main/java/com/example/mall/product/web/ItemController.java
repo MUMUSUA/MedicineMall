@@ -1,4 +1,4 @@
-package java.com.example.mall.product.web;
+package com.example.mall.product.web;
 
 import javax.annotation.Resource;
 import com.example.mall.product.vo.SkuItemVo;
