@@ -680,7 +680,7 @@
 
                     <div class="box-btns-two"
                          th:if="${item.seckillSkuVo == null }">
-                        <a class="addToCart" href="#" th:attr="skuId=${item.info.skuId}">
+                        <a  href="#" id="addToCartA "th:attr="skuId=${item.info.skuId}">
                             加入购物车
                         </a>
                     </div>
@@ -1386,14 +1386,26 @@
         $(".sku_attr_value").parent().css({"border": "solid 1px #ccc"});
         $("a[class='sku_attr_value checked']").parent().css({"border": "solid 1px red"});
     };
+    $("#addToCartA").click(function(){
+        var num =$("productNum").val();
 
-
-    $(".addToCart").click(function () {
-        let skuId = $(this).attr("skuId");
-        let num = $("#productNum").val();
-        location.href = "http://cart.gulimall.com/addCartItem?skuId=" + skuId + "&num=" + num;
+        location.href="http://cart.mall.com/addCartItem？skuid=？&num=?";
         return false;
-    });
+    })
+
+    // $("#addToCartA").click(function () {
+    //     let skuId = $(this).attr("skuId");
+    //     let num = $("#productNum").val();
+    //     location.href = "http://cart.mall.com/addCartItem?skuId=" + skuId + "&num=" + num;
+    //     return false;
+    // });
+    //
+    // $(".addToCart").click(function () {
+    //     let skuId = $(this).attr("skuId");
+    //     let num = $("#productNum").val();
+    //     location.href = "http://cart.gulimall.com/addCartItem?skuId=" + skuId + "&num=" + num;
+    //     return false;
+    // });
 
     $(".seckill").click(function () {
         var isLogin = [[${session.loginUser != null}]];     //true

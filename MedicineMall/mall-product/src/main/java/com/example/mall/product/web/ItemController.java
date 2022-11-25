@@ -1,7 +1,7 @@
 package java.com.example.mall.product.web;
 
 import javax.annotation.Resource;
-import java.com.example.mall.product.vo.SkuItemVo;
+import com.example.mall.product.vo.SkuItemVo;
 import java.util.concurrent.ExecutionException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

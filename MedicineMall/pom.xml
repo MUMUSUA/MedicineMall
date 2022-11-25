@@ -27,6 +27,7 @@
     <module>mall-thirdParty</module>
     <module>mall-cart</module>
     <module>mall-sale</module>
+    <module>mall-search</module>
     <module>mall-stock</module>
 </modules>
 </project>

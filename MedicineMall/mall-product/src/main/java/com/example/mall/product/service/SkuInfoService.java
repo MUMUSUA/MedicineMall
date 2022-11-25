@@ -4,8 +4,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.common.utils.PageUtils;
 import com.example.mall.product.entity.SkuInfoEntity;
 
-import java.com.example.mall.product.vo.SkuItemVo;
+import com.example.mall.product.vo.SkuItemVo;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * sku信息
@@ -22,6 +23,6 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
 
     PageUtils queryPageByCondition(Map<String, Object> params);
 
-    SkuItemVo item (Long skuId);
+    SkuItemVo item (Long skuId) throws ExecutionException, InterruptedException;
 }
 

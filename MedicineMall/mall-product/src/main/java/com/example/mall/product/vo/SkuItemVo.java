@@ -1,8 +1,8 @@
-package java.com.example.mall.product.vo;
+package com.example.mall.product.vo;
 
-import java.com.example.mall.product.entity.SkuImagesEntity;
-import java.com.example.mall.product.entity.SkuInfoEntity;
-import java.com.example.mall.product.entity.SpuInfoDescEntity;
+import com.example.mall.product.entity.SkuImagesEntity;
+import com.example.mall.product.entity.SkuInfoEntity;
+import com.example.mall.product.entity.SpuInfoDescEntity;
 
 import lombok.Data;
 import lombok.ToString;
