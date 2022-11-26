@@ -1,15 +1,15 @@
 package com.example.auth.vo;
 
-//import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.Length;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-public class UserRegisterVo {
+@Data
+public class UserRegistVo {
     @NotEmpty(message = "用户名不能为空")
     @Length(min = 6,max = 18,message = "用户名长度在6-18位字符")
-//    @Length(min = 6, max = 18, message="用户名长度在6-18字符")
     private String userName;
 
     @NotEmpty(message = "密码必须填写")

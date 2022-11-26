@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymleaf.org">
 <head>
 	<meta charset="utf-8"/>
 	<title>商城注册页面</title>
@@ -5969,16 +5969,17 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 			<label class="username_label">用 户 名
 				<input name="userName" maxlength="20" type="text" placeholder="您的用户名和登录名">
 			</label>
-			<div class="tips">
-
+			<div class="tips" style="color: red"
+				 th:text="${errors != null ? (#maps.containsKey(errors,'userName') ? errors.userName:''):''}">
 			</div>
 		</div>
+
 		<div class="register-box">
 			<label class="other_label">设 置 密 码
 				<input name="password" maxlength="20" type="password" placeholder="建议至少使用两种字符组合">
 			</label>
-			<div class="tips">
-
+			<div class="tips" style="color: red"
+				 th:text="${errors != null ? (#maps.containsKey(errors,'password') ? errors.password:''):''}">
 			</div>
 		</div>
 		<div class="register-box">
@@ -5989,21 +5990,28 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 
 			</div>
 		</div>
+
 		<div class="register-box">
 			<label class="other_label">
 				<span>中国 0086∨</span>
 				<input name="phone" class="phone" id="phoneNum" maxlength="11" type="text" placeholder="建议使用常用手机">
 			</label>
-			<div class="tips">
-
+			<div class="tips" style="color: red"
+				 th:text="${errors != null ? (#maps.containsKey(errors,'phone') ? errors.phone:''):''}">
 			</div>
 		</div>
+
 		<div class="register-box">
 			<label class="other_label">验 证 码
 				<input name="code" maxlength="20" type="text" placeholder="请输入验证码" class="caa">
 			</label>
 			<a id="sendCode" class=""> 发送验证码 </a>
+			<div class="tips" style="color: red"
+				 th:text="${errors != null ? (#maps.containsKey(errors,'code') ? errors.code:''):''}">
+			</div>
 		</div>
+
+
 		<div class="arguement">
 			<input type="checkbox" id="xieyi"> 阅读并同意
 			<a href="/static/reg/#">《商城用户注册协议》</a>
@@ -6265,7 +6273,7 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 				//正在倒计时中
 			} else {
 				//1、给指定手机号发送验证码
-				$.get("/send_sms/sendcode?phone=" + $("#phoneNum").val(),function (data) {
+				$.get("/send_sms/sendcode?phone=" + $("#phoneNum").val(),function(data) {
 					if(data.code != 0) {
 						alert(data.msg);
 					}
