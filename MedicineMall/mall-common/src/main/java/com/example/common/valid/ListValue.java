@@ -11,9 +11,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @Description: 自定义注解规则
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-05-27 17:48
  **/
 
 @Documented
@@ -22,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 public @interface ListValue {
 
-    String message() default "{com.xunqi.common.valid.ListValue.message}";
+    String message() default "{com.example.common.valid.ListValue.message}";
 
     Class<?>[] groups() default { };
 

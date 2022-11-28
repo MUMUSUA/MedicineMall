@@ -1,4 +1,4 @@
-package com.example.mall.cart.conf;
+package com.example.mall.product.config;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -8,10 +8,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
-/**
- * @Description: 线程池配置类
- **/
 
 @EnableConfigurationProperties(ThreadPoolConfigProperties.class)
 @Configuration

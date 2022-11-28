@@ -1,12 +1,11 @@
-package com.example.mall.cart.conf;
+package com.example.mall.product.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-
+import org.springframework.stereotype.Component;
 
 @ConfigurationProperties(prefix = "mall.thread")
-// @Component
+//@Component
 @Data
 public class ThreadPoolConfigProperties {
 

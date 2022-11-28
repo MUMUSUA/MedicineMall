@@ -39,6 +39,7 @@ logging:
   level:
     com.example.mall: debug
 
+
 #Alibaba OSS配置
 #alibaba:
 #  cloud:

@@ -1,8 +1,9 @@
 package com.example.mall.product.web;
 
 import javax.annotation.Resource;
-import com.example.mall.product.vo.SkuItemVo;
 import java.util.concurrent.ExecutionException;
+
+import com.example.mall.product.vo.SkuItemVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class ItemController {
      * @return
      */
     @GetMapping("/{skuId}.html")
-    public String skuItem(@PathVariable("skuId") Long skuId, Model model)  {
+    public String skuItem(@PathVariable("skuId") Long skuId, Model model) throws ExecutionException, InterruptedException {
 
         System.out.println("准备查询" + skuId + "详情");
 
