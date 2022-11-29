@@ -12,10 +12,24 @@ spring:
           filters:
             - RewritePath=/api/?(?<segment>.*),/$\{segment}
 
+        - id: sale_route
+          uri: lb://mall-sale
+          predicates:
+            - Path=/api/coupon/**,/api/sale/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
         - id: stock_route
           uri: lb://mall-stock
           predicates:
             - Path=/api/stock/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
+        - id: order_route
+          uri: lb://mall-order
+          predicates:
+            - Path=/api/order/**
           filters:
             - RewritePath=/api/?(?<segment>.*),/$\{segment}
 
@@ -41,12 +55,6 @@ spring:
             - RewritePath=/api/?(?<segment>.*),/mall-admin/$\{segment}
 
 
-        - id: order_route
-          uri: lb://mall-order
-          predicates:
-            - Path=/api/order/**
-          filters:
-            - RewritePath=/api/?(?<segment>.*),/$\{segment}
 
 
         - id: mall_host_route
@@ -64,8 +72,8 @@ spring:
           predicates:
             - Host=search.mall.com
 
-        - id: auth_route
-          uri: 1b://mall-auth-server
+        - id: mall_auth_route
+          uri: lb://mall-auth-server
           predicates:
             - Host=auth.mall.com
 
