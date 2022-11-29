@@ -95,7 +95,11 @@
         <artifactId>spring-cloud-starter-bootstrap</artifactId>
         <version>3.0.1</version>
     </dependency>
-<!--    <dependency>-->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+    </dependency>
+    <!--    <dependency>-->
 <!--        <groupId>com.alibaba.cloud</groupId>-->
 <!--        <artifactId>aliyun-oss-spring-boot-starter</artifactId>-->
 <!--        <exclusions>-->

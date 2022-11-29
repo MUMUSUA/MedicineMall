@@ -1,8 +1,10 @@
 package com.example.mall.product.dao;
 
-import com.example.mall.product.entity.SkuSaleAttrValueEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.mall.product.entity.SkuSaleAttrValueEntity;
+import com.example.mall.product.vo.SkuItemSaleAttrVo;
 import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 
 /**
  * sku销售属性&值

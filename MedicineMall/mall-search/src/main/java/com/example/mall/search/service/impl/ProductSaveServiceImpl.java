@@ -35,7 +35,7 @@ public class ProductSaveServiceImpl implements ProductSaveService {
         BulkRequest bulkRequest = new BulkRequest();
         for (SkuEsModel skuEsModel : skuEsModels) {
             //构造保存请求
-            IndexRequest indexRequest = new IndexRequest(EsConstant.PRODUCT_INDEX);
+            IndexRequest indexRequest = new IndexRequest("mall_product");
             indexRequest.id(skuEsModel.getSkuId().toString());
             String jsonString = JSON.toJSONString(skuEsModel);
             indexRequest.source(jsonString, XContentType.JSON);

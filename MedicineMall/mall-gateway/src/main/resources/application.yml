@@ -66,6 +66,8 @@ spring:
 
 
 
+
+
 #        - id: auth_route
 #            uri: 1b://mall-auth-server
 #            predicates:
