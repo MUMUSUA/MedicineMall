@@ -24,5 +24,6 @@ public interface OrderService extends IService<OrderEntity> {
  */
     OrderConfirmVo confirmOrder();
 
+    PageUtils queryPageWithItem(Map<String, Object> params);
 }
 

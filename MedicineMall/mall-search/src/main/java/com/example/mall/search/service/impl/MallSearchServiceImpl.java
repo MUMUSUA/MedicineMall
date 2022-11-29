@@ -6,10 +6,12 @@ import com.example.common.constant.EsConstant;
 import com.example.common.es.SkuEsModel;
 import com.example.common.utils.R;
 import com.example.mall.search.config.ElasticSearchConfig;
-import com.example.mall.search.feign.ProductFeignService;
 import com.example.mall.search.service.MallSearchService;
 import com.example.mall.search.vo.AttrResponseVo;
+import com.example.mall.search.vo.BrandVo;
 import com.example.mall.search.vo.SearchParam;
+import com.example.mall.search.vo.SearchResult;
+import com.example.mall.search.feign.ProductFeignService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.action.search.SearchRequest;
@@ -37,7 +39,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import com.example.mall.search.vo.SearchResult;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -48,6 +49,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class MallSearchServiceImpl implements MallSearchService {
+
     @Autowired
     private RestHighLevelClient esRestClient;
 
@@ -197,6 +199,7 @@ public class MallSearchServiceImpl implements MallSearchService {
         result.setPageNavs(pageNavs);
 
 
+
         //6、构建面包屑导航
         if (param.getAttrs() != null && param.getAttrs().size() > 0) {
             List<SearchResult.NavVo> collect = param.getAttrs().stream().map(attr -> {
@@ -205,6 +208,7 @@ public class MallSearchServiceImpl implements MallSearchService {
                 String[] s = attr.split("_");
                 navVo.setNavValue(s[1]);
                 R r = productFeignService.attrInfo(Long.parseLong(s[0]));
+                result.getAttrIds().add(Long.parseLong(s[0]));
                 if (r.getCode() == 0) {
                     AttrResponseVo data = r.getData("attr", new TypeReference<AttrResponseVo>() {
                     });
@@ -215,24 +219,46 @@ public class MallSearchServiceImpl implements MallSearchService {
 
                 //2、取消了这个面包屑以后，我们要跳转到哪个地方，将请求的地址url里面的当前置空
                 //拿到所有的查询条件，去掉当前
-                String encode = null;
-                try {
-                    encode = URLEncoder.encode(attr,"UTF-8");
-                    encode.replace("+","%20");  //浏览器对空格的编码和Java不一样，差异化处理
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                String replace = param.get_queryString().replace("&attrs=" + attr, "");
-                navVo.setLink("http://search.gulimall.com/list.html?" + replace);
-
+                String replace=replaceQueryString(param, attr, "attrs");
+                navVo.setLink("http://search.mall.com/list.html?"+replace);
                 return navVo;
             }).collect(Collectors.toList());
 
             result.setNavs(collect);
         }
+        //品牌分类
+        if(param.getBrandId()!=null && param.getBrandId().size()>0){
+            List<SearchResult.NavVo> navs = result.getNavs();
+            SearchResult.NavVo navVo=new SearchResult.NavVo();
+            navVo.setNavName("品牌");
+            R r = productFeignService.brandInfo(param.getBrandId());
+            if(r.getCode()==0){
+                List<BrandVo> brand = r.getData("brand", new TypeReference<List<BrandVo>>() {
 
+                });
+                StringBuffer stringBuffer = new StringBuffer();
+                String replace="";
+                for(BrandVo brandVo:brand){
+                    stringBuffer.append(brandVo.getName()+";");
+                    replace=replaceQueryString(param, brandVo.getBrandId()+"", "brandId");
+                }
+                navVo.setNavValue(stringBuffer.toString());
+                navVo.setLink("http://search.mall.com/list.html?"+replace);
+            }
+
+
+            navs.add(navVo);
+        }
 
         return result;
+    }
+
+    private String replaceQueryString(SearchParam param, String value,String key) {
+        String encode = null;
+        encode = URLEncoder.encode(value);
+        encode.replace("+","%20");  //浏览器对空格的编码和Java不一样，差异化处理
+        return param.get_queryString().replace("&"+key+"="+encode,"");
+
     }
 
 
@@ -242,15 +268,15 @@ public class MallSearchServiceImpl implements MallSearchService {
      * @return
      */
     private SearchRequest buildSearchRequest(SearchParam param) {
-        //构建DSL语句
+
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
         /**
          * 模糊匹配，过滤（按照属性，分类，品牌，价格区间，库存）
          */
         //1. 构建bool-query
-        //BoolQueryBuilder boolQueryBuilder=new BoolQueryBuilder();
-        BoolQueryBuilder boolQueryBuilder=QueryBuilders.boolQuery();
+        BoolQueryBuilder boolQueryBuilder=new BoolQueryBuilder();
+
         //1.1 bool-must
         if(!StringUtils.isEmpty(param.getKeyword())){
             boolQueryBuilder.must(QueryBuilders.matchQuery("skuTitle",param.getKeyword()));
@@ -259,7 +285,7 @@ public class MallSearchServiceImpl implements MallSearchService {
         //1.2 bool-fiter
         //1.2.1 catelogId
         if(null != param.getCatalog3Id()){
-            boolQueryBuilder.filter(QueryBuilders.termQuery("catalogId",param.getCatalog3Id()));
+            boolQueryBuilder.filter(QueryBuilders.termQuery("catelogId",param.getCatalog3Id()));
         }
 
         //1.2.2 brandId
@@ -380,13 +406,14 @@ public class MallSearchServiceImpl implements MallSearchService {
         attr_agg.subAggregation(attr_id_agg);
         //2.1.1 在每个属性ID下，按照属性名进行聚合
         attr_id_agg.subAggregation(AggregationBuilders.terms("attr_name_agg").field("attrs.attrName").size(1));
-        //2.1.2 在每个属性ID下，按照属性值进行聚合
+        //2.1.1 在每个属性ID下，按照属性值进行聚合
         attr_id_agg.subAggregation(AggregationBuilders.terms("attr_value_agg").field("attrs.attrValue").size(50));
         searchSourceBuilder.aggregation(attr_agg);
 
         log.debug("构建的DSL语句 {}",searchSourceBuilder.toString());
-        SearchRequest searchRequest = new SearchRequest(new String[]{"mall_product"}, searchSourceBuilder);
+
+        SearchRequest searchRequest = new SearchRequest(new String[]{"mall_product"},searchSourceBuilder);
+
         return searchRequest;
     }
-
 }

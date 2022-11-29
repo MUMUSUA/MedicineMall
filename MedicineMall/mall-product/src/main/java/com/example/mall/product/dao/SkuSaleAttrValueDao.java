@@ -1,9 +1,11 @@
 package com.example.mall.product.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.mall.product.entity.SkuSaleAttrValueEntity;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.mall.product.vo.SkuItemSaleAttrVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -16,7 +18,7 @@ import java.util.List;
 @Mapper
 public interface SkuSaleAttrValueDao extends BaseMapper<SkuSaleAttrValueEntity> {
 
-    List<String> getSkuSaleAttrValuesAsStringList(Long skuId);
+    List<String> getSkuSaleAttrValuesAsStringList(@Param("skuId")Long skuId);
 
-    List<SkuItemSaleAttrVo> getSaleAttrBySpuId(Long spuId);
+    List<SkuItemSaleAttrVo> getSaleAttrBySpuId(@Param("spuId") Long spuId);
 }

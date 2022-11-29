@@ -25,7 +25,7 @@ public class SearchController {
     public String listPage(SearchParam param, Model model, HttpServletRequest request) {
 
         param.set_queryString(request.getQueryString());
-
+        System.out.println("查询条件："+param.get_queryString());
         //1、根据传递来的页面的查询参数，去es中检索商品
         SearchResult result = mallSearchService.search(param);
 

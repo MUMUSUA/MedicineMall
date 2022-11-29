@@ -1,6 +1,7 @@
 package com.example.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,4 +93,12 @@ public class BrandController {
         return R.ok();
     }
 
+
+    @GetMapping("/infos")
+    public R info(@RequestParam("brandIds")List<Long> brandId){
+        List<BrandEntity> brand = brandService.getBrandsById(brandId);
+
+        return R.ok().put("brand",brand);
+
+    }
 }

@@ -27,6 +27,8 @@ public class SkuImagesServiceImpl extends ServiceImpl<SkuImagesDao, SkuImagesEnt
 
         return new PageUtils(page);
     }
+
+
     @Override
     public List<SkuImagesEntity> getImagesBySkuId(Long skuId) {
 
@@ -34,5 +36,6 @@ public class SkuImagesServiceImpl extends ServiceImpl<SkuImagesDao, SkuImagesEnt
 
         return imagesEntities;
     }
+
 
 }

@@ -13,6 +13,7 @@
         <result property="attrSort" column="attr_sort"/>
     </resultMap>
 
+
     <select id="getSaleAttrBySpuId" resultMap="skuItemSaleAttrVo">
         SELECT
             ssav.attr_id attr_id,
@@ -20,8 +21,8 @@
             ssav.attr_value,
             group_concat( DISTINCT info.sku_id ) sku_ids
         FROM
-            pms_sku_info info
-                LEFT JOIN pms_sku_sale_attr_value ssav ON ssav.sku_id = info.sku_id
+            sku_info info
+                LEFT JOIN sku_sale_attr_value ssav ON ssav.sku_id = info.sku_id
         WHERE
             info.spu_id = #{spuId}
         GROUP BY
@@ -40,6 +41,8 @@
             sku_id = #{skuId}
     </select>
 
+
+
     <resultMap id="skuItemSaleAttrVo" type="com.example.mall.product.vo.SkuItemSaleAttrVo">
         <result column="attr_id" property="attrId"></result>
         <result column="attr_name" property="attrName"></result>
@@ -48,4 +51,9 @@
             <result column="sku_ids" property="skuIds"></result>
         </collection>
     </resultMap>
+
+
+
+
+
 </mapper>
