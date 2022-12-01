@@ -4,12 +4,10 @@ import lombok.Data;
 
 
 @Data
-public class MemberUserRegisterVo {
+public class MemberLoginVo {
 
-    private String userName;
+    private String loginacct;
 
     private String password;
-
-    private String phone;
 
 }

@@ -1,13 +1,10 @@
-package com.example.mall.user.vo;
+package com.example.auth.vo;
 
 import lombok.Data;
 
-
 @Data
-public class MemberUserLoginVo {
+public class UserLoginVo {
 
     private String loginacct;
-
     private String password;
-
 }
