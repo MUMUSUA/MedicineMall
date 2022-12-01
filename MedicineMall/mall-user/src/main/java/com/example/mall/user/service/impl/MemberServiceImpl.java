@@ -98,7 +98,8 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         if (memberEntity == null) {
             //登录失败
             return null;
-        } else {
+        }
+        else {
             //1、获取到数据库里的password
             String passwordDb = memberEntity.getPassword();
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -111,6 +112,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
                 return null;
             }
         }
+
     }
 
     @Override

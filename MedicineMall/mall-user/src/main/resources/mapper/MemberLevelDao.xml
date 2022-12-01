@@ -17,5 +17,7 @@
         <result property="note" column="note"/>
     </resultMap>
 
-
+    <select id="getDefaultLevel" resultType="com.example.mall.user.entity.MemberLevelEntity">
+        SELECT * FROM member_level WHERE default_status = 1
+    </select>
 </mapper>

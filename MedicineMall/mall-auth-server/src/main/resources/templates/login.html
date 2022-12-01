@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymleaf.org">
+<!--<html lang="en" xmlns:th="http://www.thymleaf.org">-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<meta charset="utf-8" />
+		<meta CONTENT="text/html" charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="/static/login/JD_sass/JD1.css" />
 		<script src="/static/login/JD_js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<title>mall</title>
@@ -59,7 +60,7 @@
 						请输入账户名和密码
 					</div>
 					<form action="/login" method="post">
-						<div style="color: red" th:text="${errors != null ? (#maps.containsKey(errors, 'msg') ? errors.msg : '') : ''}"></div>
+						<div style="color: red"  th:text="${errors != null ? (#maps.containsKey(errors, 'msg') ? errors.msg : '') : ''}"></div>
 					<ul>
 						<li class="top_1">
 							<img src="/static/login/JD_img/user_03.png" class="err_img1" />

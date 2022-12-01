@@ -60,6 +60,7 @@ public class MemberController {
     }
 
 
+
     @PostMapping(value = "/register")
     public R register(@RequestBody MemberRegistVo vo) {
 
