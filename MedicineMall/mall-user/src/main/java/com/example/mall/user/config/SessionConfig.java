@@ -17,7 +17,7 @@ public class SessionConfig {
 
         //放大作用域
         cookieSerializer.setDomainName("mall.com");
-        cookieSerializer.setCookieName("GULISESSION");
+        cookieSerializer.setCookieName("SESSION");
 
         return cookieSerializer;
     }

@@ -72,7 +72,7 @@ spring:
           predicates:
             - Host=search.mall.com
 
-        - id: mall_auth_route
+        - id: auth_route
           uri: lb://mall-auth-server
           predicates:
             - Host=auth.mall.com

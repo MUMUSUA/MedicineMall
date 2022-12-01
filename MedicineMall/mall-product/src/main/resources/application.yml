@@ -16,8 +16,10 @@ spring:
     name: mall-product
   thymeleaf:
     cache: false
+  session:
+    store-type: redis
   redis:
-    host: 192.168.59.10
+    host: 192.168.255.128
     port: 6379
   cache:
     type: redis

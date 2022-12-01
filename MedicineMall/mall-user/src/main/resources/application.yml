@@ -19,10 +19,11 @@ spring:
     port: 6379
     host: 192.168.77.130
 mybatis-plus:
-  mapper-locations: classpath*:/mapper/**/*.xml
+  mapper-locations: classpath*:/mapper/*.xml
   global-config:
     db-config:
       id-type:  auto
+#  type-aliases-package: com.example.mall
 server:
   port: 10002
 
@@ -32,7 +33,7 @@ feign:
     enabled: true
 
   application:
-    name: gulimall-member
+    name: mall-user
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
