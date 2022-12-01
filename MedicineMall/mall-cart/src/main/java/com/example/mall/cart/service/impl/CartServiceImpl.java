@@ -44,6 +44,8 @@ public class CartServiceImpl implements CartService{
 
 
    private final String CART_PREFIX = "mall:cart:";
+
+
     @Override
     public CartItem addToCart(Long skuId, Integer num) throws ExecutionException, InterruptedException {
         BoundHashOperations<String, Object, Object> cartOps = getCartOps();
@@ -51,6 +53,7 @@ public class CartServiceImpl implements CartService{
         if (StringUtils.isEmpty(res)) {
             //2添加新商品到购物车
             CartItem cartItem = new CartItem();
+            //异步编排异步运行任务，异步任务交给线程进行调度
             CompletableFuture<Void> getSkuInfoTask = CompletableFuture.runAsync(() -> {
                 R skuInfo = productFeignService.getSkuInfo(skuId);
                 SkuInfoVo data = skuInfo.getData("skuInfo", new TypeReference<SkuInfoVo>() {
@@ -58,7 +61,8 @@ public class CartServiceImpl implements CartService{
                 cartItem.setCheck(true);
                 cartItem.setCount(num);
                 cartItem.setImage(data.getSkuDefaultImg());
-                cartItem.setTitle(data.getSkuSubtitle());
+                cartItem.setTitle(data.getSkuTitle());
+                cartItem.setSkuId(skuId);
                 cartItem.setPrice(data.getPrice());
             }, executor);
 //            CompletableFuture<Void> voidCompletableFuture = getSkuInfoTask;
@@ -69,6 +73,7 @@ public class CartServiceImpl implements CartService{
                 List<String> values = productFeignService.getSkuSaleAttrValues(skuId);
                 cartItem.setSkuAttrValues(values);
             }, executor);
+      //异步编排任务全部完成，将数据放到redis
             CompletableFuture.allOf(getSkuInfoTask, getSkuSaleAttrValues).get();
             String s = JSON.toJSONString(cartItem);
             cartOps.put(skuId.toString(), s);
@@ -77,6 +82,7 @@ public class CartServiceImpl implements CartService{
             //购物车有此商品，修改数量
             CartItem cartItem = JSON.parseObject(res, CartItem.class);
             cartItem.setCount(cartItem.getCount() + num);
+            cartOps.put(skuId.toString(),JSON.toJSONString(cartItem));
             return cartItem;
         }
     }

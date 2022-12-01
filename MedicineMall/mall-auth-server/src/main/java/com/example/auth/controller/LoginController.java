@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,9 +34,9 @@ public class LoginController {
 //    @Resource
     ThirdPartyFeignService thirdPartyFeignService;
 
-    //    @Resource
-    @Autowired
-    StringRedisTemplate redisTemplate;
+        @Resource
+//    @Autowired
+    StringRedisTemplate stringRedisTemplate;
 
     @Autowired
     MemberFeignService memberFeignService;
@@ -45,10 +46,10 @@ public class LoginController {
      * SpringMVC viewcontroller;将请求和页面映射过来
      *
      */
-//    @GetMapping("/login.html")
-//    public String loginPage(){
-//        return "login";
-//    }
+    @GetMapping("/login.html")
+    public String loginPage(){
+        return "login";
+    }
 //
 //    @GetMapping("/reg.html")
 //    public String regPage(){
@@ -60,7 +61,7 @@ public class LoginController {
     public R sendCode(@RequestParam("phone") String phone){
 
         // TODO  1、接口防刷
-        String redisCode = redisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + phone);
+        String redisCode = stringRedisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + phone);
         if (!StringUtils.isEmpty(redisCode)) {
             //活动存入redis的时间，用当前时间减去存入redis的时间，判断用户手机号是否在60s内发送验证码
             long currentTime = Long.parseLong(redisCode.split("_")[1]);
@@ -75,7 +76,7 @@ public class LoginController {
         String substring = code + "_" + System.currentTimeMillis();
 
         //redis缓存验证码，防止同一个手机号在60秒内再次发送验证码
-        redisTemplate.opsForValue().set(AuthServerConstant.SMS_CODE_CACHE_PREFIX+phone,substring,10, TimeUnit.MINUTES);
+        stringRedisTemplate.opsForValue().set(AuthServerConstant.SMS_CODE_CACHE_PREFIX+phone,substring,10, TimeUnit.MINUTES);
 
         thirdPartyFeignService.sendCode(phone,code);
         return R.ok();
@@ -98,12 +99,12 @@ public class LoginController {
         String code = vo.getCode();
 
         //获取存入Redis里的验证码
-        String redisCode = redisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + vo.getPhone());
+        String redisCode = stringRedisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + vo.getPhone());
         if (!StringUtils.isEmpty(redisCode)) {
             //截取字符串
             if (code.equals(redisCode.split("_")[0])) {
                 //删除验证码;令牌机制
-                redisTemplate.delete(AuthServerConstant.SMS_CODE_CACHE_PREFIX+vo.getPhone());
+                stringRedisTemplate.delete(AuthServerConstant.SMS_CODE_CACHE_PREFIX+vo.getPhone());
                 //验证码通过，真正注册，调用远程服务进行注册
                 R regist = memberFeignService.register(vo);
                 if (regist.getCode() == 0) {

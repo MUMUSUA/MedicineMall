@@ -25,5 +25,4 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
 
         return new PageUtils(page);
     }
-
 }
