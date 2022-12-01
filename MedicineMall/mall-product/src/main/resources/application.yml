@@ -17,7 +17,7 @@ spring:
   thymeleaf:
     cache: false
   redis:
-    host: 192.168.255.128
+    host: 192.168.183.10
     port: 6379
   cache:
     type: redis

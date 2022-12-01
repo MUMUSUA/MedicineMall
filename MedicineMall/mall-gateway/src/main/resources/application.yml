@@ -64,10 +64,10 @@ spring:
           predicates:
             - Host=search.mall.com
 
-        - id: auth_route
-          uri: 1b://mall-auth-server
-          predicates:
-            - Host=auth.mall.com
+#        - id: auth_route
+#          uri: 1b://mall-auth-server
+#          predicates:
+#            - Host=auth.mall.com
 
 
 
