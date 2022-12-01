@@ -29,17 +29,17 @@ import com.example.common.utils.R;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-    @Value("${order.user.name}")
-    private String name;
+//    @Value("${order.user.name}")
+//    private String name;
+//
+//    @Value("${order.user.age}")
+//    private Integer age;
 
-    @Value("${order.user.age}")
-    private Integer age;
 
-
-    @RequestMapping("/test")
-    public R test(){
-return R.ok().put("name",name).put("age",age);
-    }
+//    @RequestMapping("/test")
+//    public R test(){
+//return R.ok().put("name",name).put("age",age);
+//    }
 @RequestMapping("/user/orders")
     public R userOrders(){
         OrderEntity order=new OrderEntity();
