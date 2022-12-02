@@ -13,10 +13,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -37,7 +34,7 @@ import javax.annotation.Resource;
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
-
+    private Map<String,Object> cache = new HashMap<>();
     @Resource
     CategoryBrandRelationService categoryBrandRelationService;
 
@@ -85,6 +82,37 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         baseMapper.deleteBatchIds(asList);
     }
 
+
+
+    //递归查找所有菜单的子菜单
+    private List<CategoryEntity> getChildrens(CategoryEntity root,List<CategoryEntity> all){
+        List<CategoryEntity> children=all.stream().filter(categoryEntity ->{
+                    //           return categoryEntity.getParentCid().equals(root.getCatId());
+                    return categoryEntity.getParentCid().longValue() == root.getCatId().longValue();
+                }).map((categoryEntity)->{
+                    //找到子菜单
+                    categoryEntity.setChildren(getChildrens(categoryEntity,all));
+                    return categoryEntity;
+                })
+                .sorted((menu1,menu2)->{
+                    //菜单的排序
+                    return (menu1.getSort()==null?0: menu1.getSort())-(menu2.getSort()==null?0: menu2.getSort());
+                })
+                .collect(Collectors.toList());
+
+        return children;
+    }
+
+    @Override
+    public Long[] findCatelogPath(Long catelogId) {
+        List<Long> paths = new ArrayList<>();
+        //递归查询是否还有父节点
+        List<Long> parentPath = findParentPath(catelogId, paths);
+        //进行一个逆序排列
+        Collections.reverse(parentPath);
+        return (Long[]) parentPath.toArray(new Long[parentPath.size()]);
+    }
+
     @Override
     public Long[] findCatelogId(Long categoryId) {
         List<Long> list=new ArrayList<>();
@@ -129,60 +157,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         //同时修改缓存中的数据
         //删除缓存,等待下一次主动查询进行更新
     }
-    @Override
-    public Long[] findCatelogPath(Long catelogId) {
-        List<Long> paths = new ArrayList<>();
-        //递归查询是否还有父节点
-        List<Long> parentPath = findParentPath(catelogId, paths);
-        //进行一个逆序排列
-        Collections.reverse(parentPath);
-        return (Long[]) parentPath.toArray(new Long[parentPath.size()]);
-    }
-
-
-
-    private List<CategoryEntity> getParent_cid(List<CategoryEntity> selectList,Long parentCid) {
-        List<CategoryEntity> categoryEntities = selectList.stream().filter(item -> item.getParentCid().equals(parentCid)).collect(Collectors.toList());
-        return categoryEntities;
-        // return this.baseMapper.selectList(
-        //         new QueryWrapper<CategoryEntity>().eq("parent_cid", parentCid));
-    }
-    private List<Long> findParentPath(Long catelogId, List<Long> paths) {
-
-        //1、收集当前节点id
-        paths.add(catelogId);
-
-        //根据当前分类id查询信息
-        CategoryEntity byId = this.getById(catelogId);
-        //如果当前不是父分类
-        if (byId.getParentCid() != 0) {
-            findParentPath(byId.getParentCid(), paths);
-        }
-
-        return paths;
-    }
-
-
-    //递归查找所有菜单的子菜单
-    private List<CategoryEntity> getChildrens(CategoryEntity root,List<CategoryEntity> all){
-        List<CategoryEntity> children=all.stream().filter(categoryEntity ->{
- //           return categoryEntity.getParentCid().equals(root.getCatId());
-          return categoryEntity.getParentCid().longValue() == root.getCatId().longValue();
-        }).map((categoryEntity)->{
-            //找到子菜单
-                    categoryEntity.setChildren(getChildrens(categoryEntity,all));
-                    return categoryEntity;
-                })
-                .sorted((menu1,menu2)->{
-                    //菜单的排序
-                    return (menu1.getSort()==null?0: menu1.getSort())-(menu2.getSort()==null?0: menu2.getSort());
-                })
-                .collect(Collectors.toList());
-
-                return children;
-    }
-
-
 
     @Cacheable(value = {"category"},key = "#root.method.name",sync = true)
     @Override
@@ -194,6 +168,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         System.out.println("消耗时间："+ (System.currentTimeMillis() - l));
         return categoryEntities;
     }
+
+
+
 
     @Cacheable(value = "category",key = "#root.methodName")
     @Override
@@ -240,6 +217,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
         return parentCid;
     }
+
+
+
+
+
+
 
 
     public Map<String, List<Catelog2Vo>> getCatalogJson2(){
@@ -404,6 +387,25 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
         return parentCid;
     }
+    private List<CategoryEntity> getParent_cid(List<CategoryEntity> selectList,Long parentCid) {
+        List<CategoryEntity> categoryEntities = selectList.stream().filter(item -> item.getParentCid().equals(parentCid)).collect(Collectors.toList());
+        return categoryEntities;
+        // return this.baseMapper.selectList(
+        //         new QueryWrapper<CategoryEntity>().eq("parent_cid", parentCid));
+    }
 
+    private List<Long> findParentPath(Long catelogId, List<Long> paths) {
 
+        //1、收集当前节点id
+        paths.add(catelogId);
+
+        //根据当前分类id查询信息
+        CategoryEntity byId = this.getById(catelogId);
+        //如果当前不是父分类
+        if (byId.getParentCid() != 0) {
+            findParentPath(byId.getParentCid(), paths);
+        }
+
+        return paths;
+    }
 }
