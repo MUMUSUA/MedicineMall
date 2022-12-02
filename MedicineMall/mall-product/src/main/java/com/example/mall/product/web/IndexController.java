@@ -3,7 +3,9 @@ package com.example.mall.product.web;
 import com.example.mall.product.entity.CategoryEntity;
 import com.example.mall.product.service.CategoryService;
 import com.example.mall.product.vo.Catelog2Vo;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +21,11 @@ public class IndexController {
     @Resource
     private CategoryService categoryService;
 
-//    @Autowired
-//    private RedissonClient redisson;
-//
-//    @Autowired
-//    private StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    private RedissonClient redisson;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @GetMapping(value = {"/","index.html"})
     private String indexPage(Model model) {
