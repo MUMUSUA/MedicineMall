@@ -86,6 +86,7 @@ public class CartServiceImpl implements CartService{
         BoundHashOperations<String, Object, Object> cartOps = getCartOps();
         String str = (String) cartOps.get(skuId.toString());
         CartItem cartItem = JSON.parseObject(str, CartItem.class);
+        cartItem.setSkuId(skuId);
         return cartItem;
     }
 
