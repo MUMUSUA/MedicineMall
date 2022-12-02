@@ -6,10 +6,13 @@ import com.example.common.to.mq.StockDetailTo;
 import com.example.common.to.mq.StockLockedTo;
 import com.example.common.utils.R;
 import com.example.mall.stock.feign.ProductFeignService;
+import com.example.mall.stock.vo.SkuHasStockVo;
+import com.example.mall.stock.vo.StockSkuLockVo;
+import com.example.mall.user.feign.OrderFeignService;
 import com.example.mall.stock.vo.OrderItemVo;
 import com.example.mall.stock.vo.OrderVo;
 import com.example.mall.stock.vo.SkuHasStockVo;
-import com.example.mall.stock.vo.WareSkuLockVo;
+import com.example.mall.stock.vo.StockSkuLockVo;
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +110,23 @@ public class StockSkuServiceImpl extends ServiceImpl<StockSkuDao, StockSkuEntity
     }
 
 
+
+
+    @Override
+    public boolean orderLockStock(StockSkuLockVo vo) {
+        return false;
+    }
+
+
+    @Override
+    public void unlockStock(StockLockedTo to) {
+
+    }
+
+    @Override
+    public void unlockStock(OrderTo orderTo) {
+
+    }
 
     @Override
     public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {

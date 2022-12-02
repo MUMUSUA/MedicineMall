@@ -46,5 +46,4 @@ public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao
 
         return stringList;
     }
-
 }

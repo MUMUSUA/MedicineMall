@@ -6,7 +6,6 @@ import com.example.mall.product.entity.BrandEntity;
 import com.example.mall.product.service.BrandService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
 import org.junit.runner.RunWith;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;

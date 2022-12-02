@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sun.security.util.AuthResources_ja;
 
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.concurrent.ExecutionException;
@@ -43,7 +44,6 @@ public class CartController {
 
     /**
      * 添加商品到购物车
-     *
      * @return
      */
 //    RedirectAttributes ra
@@ -70,5 +70,6 @@ public class CartController {
         model.addAttribute("item", cartItem);
         return "success";
     }
+
 }
 
