@@ -77,6 +77,11 @@ spring:
           predicates:
             - Host=auth.mall.com
 
+        - id: auth_route
+          uri: lb://mall-seckill
+          predicates:
+            - Host=seckill.mall.com
+
 
 
 
