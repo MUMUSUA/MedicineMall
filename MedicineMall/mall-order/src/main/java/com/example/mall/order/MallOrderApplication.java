@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author wxl
  */
 @SpringBootApplication
-@MapperScan("com.example.mall.order.dao")
+@MapperScan(basePackages ={ "com.example.mall.order.dao"})
 @EnableDiscoveryClient
 @EnableFeignClients
 public class MallOrderApplication {

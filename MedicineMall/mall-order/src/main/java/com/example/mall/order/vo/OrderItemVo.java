@@ -17,6 +17,8 @@ public class OrderItemVo {
 
     private Boolean check;
 
+    private boolean hasStock;
+
     private String title;
 
     private String image;

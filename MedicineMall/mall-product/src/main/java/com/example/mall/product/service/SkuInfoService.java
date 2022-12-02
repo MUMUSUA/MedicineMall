@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.common.utils.PageUtils;
 import com.example.mall.product.entity.SkuInfoEntity;
 
-import com.example.mall.product.vo.SkuItemVo;
 import java.util.Map;
 
 /**
@@ -21,10 +20,5 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
     void saveSkuInfo(SkuInfoEntity skuInfoEntity);
 
     PageUtils queryPageByCondition(Map<String, Object> params);
-<<<<<<< HEAD
-=======
-
-    SkuItemVo item (Long skuId);
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 }
 

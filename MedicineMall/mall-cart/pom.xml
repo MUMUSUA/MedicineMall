@@ -61,15 +61,11 @@
             <scope>test</scope>
         </dependency>
 
-<<<<<<< HEAD
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
 <!--        <dependency>-->
-=======
-        <!--        <dependency>-->
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 <!--            <groupId>org.springframework.data</groupId>-->
 <!--            <artifactId>spring-data-redis</artifactId>-->
 <!--        </dependency>-->

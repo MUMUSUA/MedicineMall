@@ -35,6 +35,9 @@ public class OrderConfirmVo {
     @Getter @Setter
     Map<Long,Boolean> stocks;
 
+    /*
+    *计算商品总数
+     */
     public Integer getCount() {
         Integer count = 0;
         if (items != null && items.size() > 0) {

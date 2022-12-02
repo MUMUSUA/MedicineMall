@@ -1,15 +1,12 @@
 package com.example.mall.stock.service.impl;
 
-import com.example.common.exception.NoStockException;
 import com.example.common.to.OrderTo;
-import com.example.common.to.mq.StockDetailTo;
 import com.example.common.to.mq.StockLockedTo;
 import com.example.common.utils.R;
 import com.example.mall.stock.feign.ProductFeignService;
-import com.example.mall.stock.vo.OrderItemVo;
-import com.example.mall.stock.vo.OrderVo;
-import com.example.mall.stock.vo.WareSkuLockVo;
-import lombok.Data;
+import com.example.mall.stock.vo.SkuHasStockVo;
+import com.example.mall.stock.vo.StockSkuLockVo;
+import com.example.mall.user.feign.OrderFeignService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +37,7 @@ public class StockSkuServiceImpl extends ServiceImpl<StockSkuDao, StockSkuEntity
 
 //    @Autowired
 //    private RabbitTemplate rabbitTemplate;
-//
+
 //    @Autowired
 //    private WareOrderTaskService wareOrderTaskService;
 //
@@ -105,18 +102,34 @@ public class StockSkuServiceImpl extends ServiceImpl<StockSkuDao, StockSkuEntity
 
     }
 
-//    @Override
-//    public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
-//
-//        List<SkuHasStockVo> skuHasStockVos = skuIds.stream().map(item -> {
-//            Long count = this.baseMapper.getSkuStock(item);
-//            SkuHasStockVo skuHasStockVo = new SkuHasStockVo();
-//            skuHasStockVo.setSkuId(item);
-//            skuHasStockVo.setHasStock(count == null?false:count > 0);
-//            return skuHasStockVo;
-//        }).collect(Collectors.toList());
-//        return skuHasStockVos;
-//    }
+    @Override
+    public boolean orderLockStock(StockSkuLockVo vo) {
+        return false;
+    }
+
+
+    @Override
+    public void unlockStock(StockLockedTo to) {
+
+    }
+
+    @Override
+    public void unlockStock(OrderTo orderTo) {
+
+    }
+
+    @Override
+    public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
+
+        List<SkuHasStockVo> skuHasStockVos = skuIds.stream().map(item -> {
+            Long count = this.baseMapper.getSkuStock(item);
+            SkuHasStockVo skuHasStockVo = new SkuHasStockVo();
+            skuHasStockVo.setSkuId(item);
+            skuHasStockVo.setHasStock(count == null?false:count > 0);
+            return skuHasStockVo;
+        }).collect(Collectors.toList());
+        return skuHasStockVos;
+    }
 
     /**
      * 为某个订单锁定库存

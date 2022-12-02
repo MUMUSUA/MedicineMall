@@ -40,7 +40,7 @@ spring:
           filters:
             - RewritePath=/api/?(?<segment>.*),/mall-admin/$\{segment}
 
-<<<<<<< HEAD
+
         - id: order_route
           uri: lb://mall-order
           predicates:
@@ -48,8 +48,7 @@ spring:
           filters:
             - RewritePath=/api/?(?<segment>.*),/$\{segment}
 
-=======
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+
         - id: mall_host_route
           uri: lb://mall-product
           predicates:
@@ -63,11 +62,9 @@ spring:
         - id: mall_search_route
           uri: lb://mall-sarch
           predicates:
-<<<<<<< HEAD
             - Host=search.mall.com    -
-=======
             - Host=search.mall.com
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
+
 
 
 

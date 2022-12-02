@@ -10,6 +10,7 @@ import com.example.mall.product.feign.StockFeignService;
 import com.example.mall.product.service.*;
 import com.example.mall.product.vo.*;
 import org.apache.commons.lang.StringUtils;
+import org.omg.CORBA.Bounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

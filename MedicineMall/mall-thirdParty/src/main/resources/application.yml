@@ -5,48 +5,13 @@ spring:
         server-addr: 127.0.0.1:8848
   application:
     name: mall-thirdParty
-<<<<<<< HEAD
 server:
   port: 10008
-=======
-
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
 
 alibaba:
   cloud:
     access-key: LTAI5t8Mniv4n3hanc6oonRi
     secret-key: NemsnmjkrR7e4pMA0uFJHbBCp14SeE
     oss:
-<<<<<<< HEAD
       endpoint: oss-cn-beijing.aliyuncs.com
       bucket: medicine--mall
-=======
-      bucket: medicine--mall
-      endpoint: oss-cn-beijing.aliyuncs.com
-    sms:
-      host: https://dfsns.market.alicloudapi.com
-      path: /data/send_sms
-      template_id: TPL_0000
-      appcode: b0c7d1425850475a8683bd29879ea2f1
-
-
-server:
-  port: 10008
-
-
-#feign: #开启熔断
-feign:
-#  hystrix:
-#    enabled:
-
-#  client:
-#    config:
-#      IComprehensiveLawFeignClientService:
-#        connectTimeout: 5000
-#        readTimeout: 5000
-#        loggerLevel: full
-  oauth2:
-    enabled: true
-    load-balanced: true
-
->>>>>>> fdad2d4878c203cec567e0d6d9a52902cee09a36
