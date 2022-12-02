@@ -248,7 +248,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
          * 2,设置过期时间（加随机值），解决缓存雪崩
          * 3,加锁，解决缓存击穿
          */
-
         //加入缓存逻辑
         String categoryJSON=stringRedisTemplate.opsForValue().get("categoryJSON");
         if(StringUtils.isEmpty(categoryJSON))

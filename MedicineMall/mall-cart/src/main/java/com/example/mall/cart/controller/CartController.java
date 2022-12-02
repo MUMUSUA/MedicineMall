@@ -30,13 +30,12 @@ import java.util.concurrent.ExecutionException;
  */
 @Controller
 public class CartController {
-    @Resource
+    @Autowired
      private  CartService cartService;
 
     @RequestMapping("/cart.html")
     public String CartListPage(Model model) throws ExecutionException, InterruptedException {
         // ThreadLocal快速得到用户信息 userId,userKey
-//        System.out.println(userInfoTo);
         Cart cart = cartService.getCart();
         model.addAttribute("cart", cart);
         return "cartList";
@@ -47,25 +46,28 @@ public class CartController {
      *
      * @return
      */
+//    RedirectAttributes ra
     @RequestMapping ("/addToCart")
     public String addToCart(@RequestParam("skuId") Long skuId,
                             @RequestParam("num") Integer num,
-                            RedirectAttributes ra) throws ExecutionException, InterruptedException {
-        cartService.addToCart(skuId, num);
-        ra.addAttribute("skuId",skuId);
-        return "redirect:http://cart.mall.com/addToCartSuccessPage.html";
-    }
-    /**
-     * 添加商品到购物车
-     * attributes.addFlashAttribute():将数据放在session中，可以在页面中取出，但是只能取一次
-     * attributes.addAttribute():将数据放在url后面
-     * @return
-     */
-    @RequestMapping( "/addToCartSuccessPage.html")
-    public String addToCartSuccessPage(@RequestParam("skuId") Long skuId, Model model) {
-        //重定向到成功页面，再次查询购物车数据即可
-        CartItem item = cartService.getCartItem(skuId);
-        model.addAttribute("item", item);
+                           Model model) throws ExecutionException, InterruptedException {
+        CartItem cartItem = cartService.addToCart(skuId, num);
+
+//         cartService.addToCart(skuId, num);
+//        ra.addAttribute("skuId",skuId);
+//        return "redirect:http://cart.mall.com/addToCartSuccessPage.html";
+//    }
+//    /**
+//     * 添加商品到购物车
+//     * attributes.addFlashAttribute():将数据放在session中，可以在页面中取出，但是只能取一次
+//     * attributes.addAttribute():将数据放在url后面
+//     * @return
+//     */
+//    @RequestMapping( "/addToCartSuccessPage.html")
+//    public String addToCartSuccessPage(@RequestParam("skuId") Long skuId, Model model) {
+//        //重定向到成功页面，再次查询购物车数据即可
+//        CartItem item = cartService.getCartItem(skuId);
+        model.addAttribute("item", cartItem);
         return "success";
     }
 }
