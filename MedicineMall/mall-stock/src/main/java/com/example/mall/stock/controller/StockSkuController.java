@@ -1,8 +1,18 @@
 package com.example.mall.stock.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import com.example.common.constant.ProductConstant;
 import com.example.common.exception.NoStockException;
+import com.example.mall.stock.vo.SkuHasStockVo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.mall.stock.entity.StockSkuEntity;
+import com.example.mall.stock.service.StockSkuService;
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.R;
 import com.example.mall.stock.entity.StockSkuEntity;
@@ -71,7 +81,7 @@ public class StockSkuController {
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("stock:stocksku:list")
+    @RequiresPermissions("stock:stocksku:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = stockSkuService.queryPage(params);
 
@@ -83,9 +93,9 @@ public class StockSkuController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("stock:stocksku:info")
+    @RequiresPermissions("stock:stocksku:info")
     public R info(@PathVariable("id") Long id){
-        StockSkuEntity stockSku = stockSkuService.getById(id);
+		StockSkuEntity stockSku = stockSkuService.getById(id);
 
         return R.ok().put("stockSku", stockSku);
     }
@@ -94,9 +104,9 @@ public class StockSkuController {
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("stock:stocksku:save")
+    @RequiresPermissions("stock:stocksku:save")
     public R save(@RequestBody StockSkuEntity stockSku){
-        stockSkuService.save(stockSku);
+		stockSkuService.save(stockSku);
 
         return R.ok();
     }
@@ -105,9 +115,9 @@ public class StockSkuController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("stock:stocksku:update")
+    @RequiresPermissions("stock:stocksku:update")
     public R update(@RequestBody StockSkuEntity stockSku){
-        stockSkuService.updateById(stockSku);
+		stockSkuService.updateById(stockSku);
 
         return R.ok();
     }
@@ -116,11 +126,25 @@ public class StockSkuController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("stock:stocksku:delete")
+    @RequiresPermissions("stock:stocksku:delete")
     public R delete(@RequestBody Long[] ids){
-        stockSkuService.removeByIds(Arrays.asList(ids));
+		stockSkuService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+
+    /**
+     * 查询sku是否有库存
+     * @return
+     */
+    @PostMapping(value = "/hasStock")
+    public R getSkuHasStock(@RequestBody List<Long> skuIds) {
+
+        //skuId stock
+        List<SkuHasStockVo> vos = stockSkuService.getSkuHasStock(skuIds);
+
+        return R.ok().setData(vos);
+
     }
 
 }

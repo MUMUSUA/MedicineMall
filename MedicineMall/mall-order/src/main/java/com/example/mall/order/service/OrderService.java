@@ -25,5 +25,6 @@ public interface OrderService extends IService<OrderEntity> {
  */
     OrderConfirmVo confirmOrder() throws ExecutionException, InterruptedException;
 
+    PageUtils queryPageWithItem(Map<String, Object> params);
 }
 

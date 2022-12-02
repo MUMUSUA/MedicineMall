@@ -1,9 +1,10 @@
+<<<<<<< HEAD
 spring:
   datasource:
     username: root
-    password: 123456
+    password: gZ97uKA6LY3x$
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mall_order?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://bj-cdb-83i4eu1y.sql.tencentcdb.com:59644/mall_order?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
   cloud:
     nacos:
       discovery:
@@ -22,9 +23,22 @@ mybatis-plus:
       id-type:  auto
 server:
   port: 10003
-
-
-#主机：bj-cdb-83i4eu1y.sql.tencentcdb.com
-#端口：59644
-#用户名：root
-#密码：g78uKA6LY3x$
+#spring:
+#  datasource:
+#    username: root
+#    password: 74123lxl
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/mall_order?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#  application:
+#    name: mall-order
+#mybatis-plus:
+#  mapper-locations: classpath*:/mapper/**/*.xml
+#  global-config:
+#    db-config:
+#      id-type:  auto
+#server:
+#  port: 10003

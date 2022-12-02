@@ -3,14 +3,15 @@ package com.example.mall.user.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.example.common.exception.BizCodeEnum;
+import com.example.mall.user.exception.PhoneException;
+import com.example.mall.user.exception.UsernameException;
 import com.example.mall.user.feign.OrderFeignService;
+import com.example.mall.user.vo.MemberRegistVo;
+import com.example.mall.user.vo.MemberLoginVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.mall.user.entity.MemberEntity;
 import com.example.mall.user.service.MemberService;
@@ -27,7 +28,7 @@ import com.example.common.utils.R;
  * @date 2022-11-02 20:06:01
  */
 @RestController
-@RequestMapping("user/member")
+@RequestMapping("user/user")
 public class MemberController {
     @Autowired
     private MemberService memberService;
@@ -44,6 +45,37 @@ public class MemberController {
         return R.ok().put("user",member).put("orders",userOrders.get("orders"));
 
     }
+
+
+    @PostMapping(value = "/login")
+    public R login(@RequestBody MemberLoginVo vo) {
+
+        MemberEntity memberEntity = memberService.login(vo);
+
+        if (memberEntity != null) {
+            return R.ok().setData(memberEntity);
+        } else {
+            return R.error(BizCodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getCode(),BizCodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getMessage());
+        }
+    }
+
+
+
+    @PostMapping(value = "/register")
+    public R register(@RequestBody MemberRegistVo vo) {
+
+        try {
+            memberService.register(vo);
+        } catch (PhoneException e) {
+            return R.error(BizCodeEnum.PHONE_EXIST_EXCEPTION.getCode(),BizCodeEnum.PHONE_EXIST_EXCEPTION.getMessage());
+        } catch (UsernameException e) {
+            return R.error(BizCodeEnum.USER_EXIST_EXCEPTION.getCode(),BizCodeEnum.USER_EXIST_EXCEPTION.getMessage());
+        }
+
+        return R.ok();
+    }
+
+
     /**
      * 列表
      */

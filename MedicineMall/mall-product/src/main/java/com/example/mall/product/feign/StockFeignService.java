@@ -10,7 +10,7 @@ import java.util.List;
 @FeignClient("mall-stock")
 public interface StockFeignService {
 
-    @PostMapping(value = "/stock/waresku/hasStock")
+    @PostMapping(value = "/stock/stocksku/hasStock")
     R getSkuHasStock(@RequestBody List<Long> skuIds);
 
 }

@@ -1,22 +1,41 @@
 package com.example.mall.product;
 
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.mall.product.entity.BrandEntity;
 import com.example.mall.product.service.BrandService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
+import java.util.UUID;
 
+@Slf4j
+@RunWith(SpringRunner.class)
 @SpringBootTest
 class MallProductApplicationTests {
     @Autowired
     BrandService brandService;
 
+    @Autowired
+    StringRedisTemplate RedisTemplate;
+
+    @Autowired
+    RedissonClient redissonClient;
+    @Test
+    void redisTemplateTest(){
+        ValueOperations<String, String> ops = RedisTemplate.opsForValue();
+
+        //保存
+        ops.set("hello","world_" + UUID.randomUUID().toString());
+
+        //查询
+        String hello = ops.get("hello");
+        System.out.println("之前保存的数据:"+hello);
+    }
 //    @Autowired
 //    OSSClient ossClient;
     @Test
@@ -35,6 +54,10 @@ class MallProductApplicationTests {
         });
     }
 
+    @Test
+    void redission(){
+        System.out.println("创建Redission"+redissonClient);
+    }
 
 //@Test
 //    public void testUpload(){
@@ -85,4 +108,6 @@ class MallProductApplicationTests {
 //                }
 //            }
 //        }
+
+
     }

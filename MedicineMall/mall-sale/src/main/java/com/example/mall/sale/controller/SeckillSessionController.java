@@ -1,15 +1,12 @@
 package com.example.mall.sale.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.mall.sale.entity.SeckillSessionEntity;
 import com.example.mall.sale.service.SeckillSessionService;
@@ -85,6 +82,17 @@ public class SeckillSessionController {
 		seckillSessionService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+    /**
+     * 查询最近三天需要参加秒杀商品的信息
+     * @return
+     */
+    @GetMapping(value = "/Lates3DaySession")
+    public R getLates3DaySession() {
+
+        List<SeckillSessionEntity> seckillSessionEntities = seckillSessionService.getLates3DaySession();
+
+        return R.ok().setData(seckillSessionEntities);
     }
 
 }

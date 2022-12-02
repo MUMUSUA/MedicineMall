@@ -7,7 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class MallAuthServerApplicationTests {
 
     @Test
+
     void contextLoads() {
+    public void contextLoads() {
     }
 
 }

@@ -56,14 +56,13 @@ header {
       color: black; }
 
 .top-3 {
-  width: 1790px;
-  height: 850px;
+  width: 1365px;
   background: white;
   position: relative; }
 
   .image{
-    width: 1700px;
-    height: 850px;
+    width: 1360px;
+    height: 475px;
     margin-left: 2.5px;
     margin-top: 3px;
   }

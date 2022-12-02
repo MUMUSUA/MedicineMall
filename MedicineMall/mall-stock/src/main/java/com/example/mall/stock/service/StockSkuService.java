@@ -8,6 +8,7 @@ import com.example.common.utils.PageUtils;
 import com.example.mall.stock.entity.StockSkuEntity;
 import com.example.mall.stock.vo.SkuHasStockVo;
 import com.example.mall.stock.vo.StockSkuLockVo;
+import com.example.mall.stock.vo.SkuHasStockVo;
 
 import java.util.List;
 import java.util.Map;
@@ -57,5 +58,4 @@ public interface StockSkuService extends IService<StockSkuEntity> {
      */
     void unlockStock(OrderTo orderTo);
 }
-
 

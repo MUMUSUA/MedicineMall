@@ -1,12 +1,19 @@
 package com.example.mall.stock.service.impl;
 
+import com.example.common.exception.NoStockException;
 import com.example.common.to.OrderTo;
+import com.example.common.to.mq.StockDetailTo;
 import com.example.common.to.mq.StockLockedTo;
 import com.example.common.utils.R;
 import com.example.mall.stock.feign.ProductFeignService;
 import com.example.mall.stock.vo.SkuHasStockVo;
 import com.example.mall.stock.vo.StockSkuLockVo;
 import com.example.mall.user.feign.OrderFeignService;
+import com.example.mall.stock.vo.OrderItemVo;
+import com.example.mall.stock.vo.OrderVo;
+import com.example.mall.stock.vo.SkuHasStockVo;
+import com.example.mall.stock.vo.WareSkuLockVo;
+import lombok.Data;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +44,7 @@ public class StockSkuServiceImpl extends ServiceImpl<StockSkuDao, StockSkuEntity
 
 //    @Autowired
 //    private RabbitTemplate rabbitTemplate;
-
+//
 //    @Autowired
 //    private WareOrderTaskService wareOrderTaskService;
 //
@@ -101,6 +108,9 @@ public class StockSkuServiceImpl extends ServiceImpl<StockSkuDao, StockSkuEntity
         }
 
     }
+
+
+
 
     @Override
     public boolean orderLockStock(StockSkuLockVo vo) {

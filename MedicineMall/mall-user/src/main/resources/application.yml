@@ -2,19 +2,49 @@
 spring:
   datasource:
     username: root
-    password: 1021
+    password: gZ97uKA6LY3x$
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.255.128:3306/mall_users?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://bj-cdb-83i4eu1y.sql.tencentcdb.com:59644/mall_user?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        #配置sentinel dashboard地址
+        dashboard: localhost:8080
   application:
     name: mall-user
+  redis:
+    port: 6379
+    host: 192.168.77.130
 mybatis-plus:
-  mapper-locations: classpath*:/mapper/**/*.xml
+  mapper-locations: classpath*:/mapper/*.xml
   global-config:
     db-config:
       id-type:  auto
+#  type-aliases-package: com.example.mall
 server:
   port: 10002
+
+#开启feign对sentinel的支持
+feign:
+  sentinel:
+    enabled: true
+
+  application:
+    name: mall-user
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+  session:
+    store-type: redis
+
+#暴露所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

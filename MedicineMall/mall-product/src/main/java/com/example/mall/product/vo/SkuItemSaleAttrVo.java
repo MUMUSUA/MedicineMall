@@ -2,11 +2,11 @@ package com.example.mall.product.vo;
 
 import lombok.Data;
 import lombok.ToString;
+
 import java.util.List;
 
-/**
- * @author wxl
- */
+
+
 @Data
 @ToString
 public class SkuItemSaleAttrVo {
