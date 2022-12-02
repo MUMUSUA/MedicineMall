@@ -12,7 +12,7 @@ import com.example.mall.user.feign.OrderFeignService;
 import com.example.mall.stock.vo.OrderItemVo;
 import com.example.mall.stock.vo.OrderVo;
 import com.example.mall.stock.vo.SkuHasStockVo;
-import com.example.mall.stock.vo.WareSkuLockVo;
+import com.example.mall.stock.vo.StockSkuLockVo;
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

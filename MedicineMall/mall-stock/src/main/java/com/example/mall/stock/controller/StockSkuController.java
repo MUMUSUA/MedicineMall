@@ -77,6 +77,8 @@ public class StockSkuController {
 
     }
 
+
+
     /**
      * 列表
      */
@@ -133,18 +135,6 @@ public class StockSkuController {
         return R.ok();
     }
 
-    /**
-     * 查询sku是否有库存
-     * @return
-     */
-    @PostMapping(value = "/hasStock")
-    public R getSkuHasStock(@RequestBody List<Long> skuIds) {
 
-        //skuId stock
-        List<SkuHasStockVo> vos = stockSkuService.getSkuHasStock(skuIds);
-
-        return R.ok().setData(vos);
-
-    }
 
 }

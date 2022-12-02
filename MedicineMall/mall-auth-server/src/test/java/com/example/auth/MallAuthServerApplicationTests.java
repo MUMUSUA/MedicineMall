@@ -5,10 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class MallAuthServerApplicationTests {
-
     @Test
-
-    void contextLoads() {
     public void contextLoads() {
     }
 

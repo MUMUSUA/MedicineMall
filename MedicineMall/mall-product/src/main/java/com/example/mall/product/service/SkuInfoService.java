@@ -1,10 +1,12 @@
-package com.example.mall.product.service;
+package com.example.mall.product.service;;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.common.utils.PageUtils;
 import com.example.mall.product.entity.SkuInfoEntity;
 
 import com.example.mall.product.vo.SkuItemVo;
+
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 

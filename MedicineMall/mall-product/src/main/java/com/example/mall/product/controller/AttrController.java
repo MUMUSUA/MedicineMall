@@ -1,6 +1,7 @@
 package com.example.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.example.mall.product.entity.ProductAttrValueEntity;

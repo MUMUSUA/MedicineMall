@@ -10,9 +10,7 @@ import org.springframework.stereotype.Component;
  * @date:2022/11/21
  **/
 @ConfigurationProperties(prefix = "mall.thread")
-/**
- *@Component
- */
+//@Component
 @Data
 public class ThreadPoolConfigProperties {
 
