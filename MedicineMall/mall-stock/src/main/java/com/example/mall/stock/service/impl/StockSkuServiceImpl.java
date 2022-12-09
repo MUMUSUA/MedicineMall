@@ -8,16 +8,9 @@ import com.example.common.utils.R;
 import com.example.mall.stock.feign.ProductFeignService;
 import com.example.mall.stock.vo.SkuHasStockVo;
 import com.example.mall.stock.vo.StockSkuLockVo;
-import com.example.mall.user.feign.OrderFeignService;
-import com.example.mall.stock.vo.OrderItemVo;
-import com.example.mall.stock.vo.OrderVo;
-import com.example.mall.stock.vo.SkuHasStockVo;
-import com.example.mall.stock.vo.StockSkuLockVo;
-import lombok.Data;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

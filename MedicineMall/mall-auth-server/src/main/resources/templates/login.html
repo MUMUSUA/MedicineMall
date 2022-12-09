@@ -1,186 +1,468 @@
 <!DOCTYPE html>
-<!--<html lang="en" xmlns:th="http://www.thymleaf.org">-->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta CONTENT="text/html" charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="/static/login/JD_sass/JD1.css" />
-		<script src="/static/login/JD_js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<title>mall</title>
-	</head>
-	<body>
-		<!--顶部logo-->
-		<header>
-			<a href="http://localhost:63342/Mall/mall-product/templates/index.html"><img src="/static/login/JD_img/logo.jpg" /></a>
-<!--			<p>欢迎登录</p>-->
-			<div class="top-1">
-				<img src="/static/login/JD_img/4de5019d2404d347897dee637895d02b_06.png" /><span>登录页面,调查问卷</span>
-			</div>
-		</header>
+<html class="" lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
 
-		<div class="top-2">
-			<div class="top-2a">
-				<img src="/static/login/JD_img/4de5019d2404d347897dee637895d02b_11.png" />
-				<p>依据《网络安全法》，为保障您的账户安全和正常使用，请尽快完成手机号验证！新版《<span>商城隐私政策</span>》已上线，将更有利于保护您的个人隐私。</p>
-			</div>
-		</div>
-
-		<!--大图-->
-		<div class="top-3">
-			<div>
-				<img class="image" src="/static/login/JD_img/5731485aN1134b4f0.jpg" />
-			</div>
-			<div id="sign">
-				<div class="si_top">
-					<p>
-						<span>商城不会以任何理由要求您转账汇款，谨防诈骗。</span>
-					</p>
-				</div>
-				<div class="si_cen">
-					<h2 class="act btn1">扫码登录</h2>
-					<span>|</span>
-					<h2 class="btn1">账户登录</h2>
-				</div>
-				<div class="si_bom tab">
-					<img src="/static/login/JD_img/show.png" class="bom_1" />
-					<a href="http://auth.mall.com/login.html"><img src="/static/login/JD_img/phone-orange.png" class="bom_2" /></a>
-					<h6>打开<span class="red">手机商城</span> 扫描二维码</h6>
-					<p>
-						<img src="/static/login/JD_img/4de5019d2404d347897dee637895d02b_15.png" />
-						<span><a href="http://auth.mall.com/login.html">免输入</a></span>
-						<img src="/static/login/JD_img/4de5019d2404d347897dee637895d02b_17.png" />
-						<span><a href="http://auth.mall.com/login.html">更快</a></span>
-						<img src="/static/login/JD_img/4de5019d2404d347897dee637895d02b_19.png" />
-						<span><a href="http://auth.mall.com/login.html">更安全</a></span>
-					</p>
-
-				</div>
-				<div class="si_bom1 tab" style="display: none;">
-					<div class="error">
-						<div></div>
-						请输入账户名和密码
-					</div>
-					<form action="/login" method="post">
-						<div style="color: red"  th:text="${errors != null ? (#maps.containsKey(errors, 'msg') ? errors.msg : '') : ''}"></div>
-					<ul>
-						<li class="top_1">
-							<img src="/static/login/JD_img/user_03.png" class="err_img1" />
-							<input type="text" name="loginacct" placeholder=" 邮箱/用户名/已验证手机" class="user" />
-						</li>
-						<li>
-							<img src="/static/login/JD_img/user_06.png" class="err_img2" />
-							<input type="password" name="password" placeholder=" 密码" class="password" />
-						</li>
-						<li class="bri">
-							<a href="/static/login/">忘记密码</a>
-						</li>
-						<li class="ent"><button class="btn2" type="submit"><a>登 &nbsp; &nbsp;录</a></button></li>
-					</ul>
-					</form>
-				</div>
-				<div class="si_out">
-					<ul>
-<!--						<li>-->
-<!--							<a href="http://auth.mall.com/login.html">-->
-<!--								<img src="/static/login/JD_img/qq.png" />-->
-<!--								<span>QQ</span>-->
-<!--							</a>-->
-<!--						</li>-->
-<!--						<li class="f4"> | </li>-->
-<!--						<li>-->
-<!--							<a href="/static/login/">-->
-<!--								<img src="/static/login/JD_img/weixin.png" />-->
-<!--								<span>微信</span>-->
-<!--							</a>-->
-<!--						</li>-->
-					</ul>
-					<h5 class="rig">
-						<img src="/static/login/JD_img/4de5019d2404d347897dee637895d02b_25.png" />
-						<span><a href="http://localhost:63342/Mall/mall-auth-server/reg.html">立即注册</a></span>
-					</h5>
-				</div>
-			</div>
-		</div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta CONTENT="text/html" charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="/static/login/JD_sass/JD1.css" />
+  <script src="/static/login/JD_js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <title>mall</title>
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/owl.theme.default.min.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/Favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/animate.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/fontawesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/media.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/owl.theme.default.css">
 
 
-		<!--底部-->
-		<footer>
-			<ul>
-				<li><a href="http://auth.mall.com/login.html">关于我们</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">联系我们</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">人才招聘</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">商家入驻</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">广告服务</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">手机商城</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">友情链接</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">销售联盟</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">商城社区</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">商城公益</a></li>
-				<li class="little">|</li>
-				<li><a href="http://auth.mall.com/login.html">English Site</a></li>
-			</ul>
-			<span>Copyright &copy; 2004-2017 商城mall.com 版权所有</span>
-		</footer>
+</head>
+<body>
+<!--顶部logo-->
+<header>
+  <a href="http://localhost:63342/Mall/mall-product/templates/index.html"><img src="/static/login/JD_img/logo.jpg"  height="50px" width="200px"/></a>
+  <!--			<p>欢迎登录</p>-->
 
-	</body>
-	<script type="text/javascript">
-		var alDiv = document.getElementsByClassName('tab');
-		var alBtn = document.getElementsByTagName('h2');
-		alDiv[0].style.display = 'block';
-		var act = alBtn[0]
-		for (var i = 0; i < alBtn.length; i++) {
-			alBtn[i].indent = i;
-			alBtn[i].onclick = function() {
-				act.className = '';
-				alDiv[act.indent].style.display = 'none';
-				this.className = 'act'
-				alDiv[this.indent].style.display = 'block'
-				act = this
-			}
-		}
+</header>
 
-		var btn2 = document.getElementsByClassName('btn2')[0];
-		var user = document.getElementsByClassName('user')[0];
-		var pass = document.getElementsByClassName('password')[0];
-		var err = document.getElementsByClassName('error')[0];
-		var err_img1 = document.getElementsByClassName('err_img1')[0];
-		var err_img2 = document.getElementsByClassName('err_img2')[0];
 
-		btn2.onclick = function() {
-			if (user.value == '' || pass.value == '') {
-				err.style.display = 'block';
-				user.style.border = '1px solid red';
-				pass.style.border = '1px solid red';
-				err_img1.src = 'JD_img/img11.png';
-				err_img2.src = 'JD_img/img22.png';
-			} else {
 
-				var a = document.getElementsByClassName("a")[0].href = "http://auth.mall.com/index.html";
-			}
-			user.onfocus = function() {
-				err_img1.src = 'JD_img/grow1.png';
-				user.style.border = '1px solid #999';
-			}
-			pass.onfocus = function() {
-				err_img2.src = 'JD_img/grow2.png';
-				pass.style.border = '1px solid #999';
-			}
-			user.onblur = function() {
-				err_img1.src = 'JD_img/img11.png';
-				user.style.border = '1px solid red';
-			}
-			pass.onblur = function() {
-				err_img2.src = 'JD_img/img22.png';
-				pass.style.border = '1px solid red';
-			}
-		}
-	</script>
+<div class="top-2">
+  <div class="top-2a">
+    <img src="/static/login/JD_img/4de5019d2404d347897dee637895d02b_11.png"/>
+    <p>依据《网络安全法》，为保障您的账户安全和正常使用，请尽快完成手机号验证！</p>
+  </div>
+</div>
+
+<!-- login page -->
+<div style="background-image: url(/static/login/JD_img/bg_4.jpg) ;width:100%;height: 100%; background-repeat: no-repeat">
+  <br><br>
+<div id="login_page" class="login-page animate__animated animate__fadeInUp">
+
+
+  <div class="container custom_container ">
+    <h3 class="text-center">账号登录 </h3>
+    <div id="login" class="page-content card card-block p-3 p-sm-4 ">
+
+
+
+
+      <form class="needs-validation"  action="/login"  method="post" novalidate >
+
+        <div class="form-group">
+          <label for="user_name" class="font-weight-bolder">用户名</label>
+          <input type="text" class="form-control user" id="user_name" placeholder=" 用户名/已验证手机" name="loginacct" required>
+          <div class="invalid-feedback">请输入您的用户名！</div>
+        </div>
+
+        <div class="form-group font-weight-bolder" >
+          <label for="user_password" class="font-weight-bolder">密码</label>
+          <input type="password" class="form-control password" id="user_password" name="password" placeholder=" 密码" required>
+          <div class="invalid-feedback">请输入您的密码！</div>
+        </div>
+
+<!--        <div class="form-group form-check">-->
+<!--          <input type="checkbox" class="form-check-input" id="user_check" >-->
+<!--          <label class="form-check-label" for="user_check">Check me out</label>-->
+<!--        </div>-->
+
+        <input type="submit" name="submit" class="btn btn-primary mb-3" value="登录">
+        <div class="pass_acc border-top pt-3">
+          <span class="forgot_password font-weight-bolder"><a href="forgot.html">忘记密码? </a></span>
+          <span class="no_account float-right font-weight-bolder"><a href="http://auth.mall.com/reg.html">没有账号? 点击注册</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+</div>	<!-- login_page -->
+
+  <br><br>
+<!-- login page -->
+</div>
+
+
+
+
+
+
+
+
+<!-- footer -->
+
+<div class="footer">
+  <div class="first_footer">
+    <div class="container custom_container">
+      <div class="row">
+        <div class="col-lg-6 col-md-7 col-12 d-none d-sm-none d-md-block">
+          <span class="d-inline-block"><svg width="110px" height="110px"><use xlink:href="#send"></use></svg></span>
+          <div class="newsletter d-inline-block align-middle">
+            <h4 class="text-light">Join Our Newsletter Now</h4>
+            <p class="mb-0">Register to get updates on promotions.</p>
+          </div>
+        </div> <!-- col-md-5 col-12 -->
+        <div class="col-lg-6 col-md-5 col-sm-12 col-12">
+          <div class="input-group">
+            <input type="text" class="form-control border-white" placeholder="Subscribe newsletter..." aria-label="Subscribe newsletter..." aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary text-uppercase" type="button" id="button-addon2">submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- row first_footer -->
+
+  <div class="second_footer ">
+    <div class="container custom_container">
+      <div class="row">
+        <div id="logo_carousel" class="owl-carousel owl-theme ">
+
+          <div class="item">
+            <div class="col-12">
+              <a href="#">
+                <img src="/static/assets/img/logo1.png" class="second-img mx-auto d-block img-fluid" alt="logo1">
+              </a>
+            </div>
+          </div> <!-- item -->
+
+          <div class="item">
+            <div class="col-12">
+              <a href="#">
+                <img src="/static/assets/img/logo2.png" class="second-img mx-auto d-block img-fluid" alt="logo2">
+              </a>
+            </div>
+          </div> <!-- item -->
+
+          <div class="item">
+            <div class="col-12">
+              <a href="#">
+                <img src="/static/assets/img/logo3.png" class="second-img mx-auto d-block img-fluid" alt="logo3">
+              </a>
+            </div>
+          </div> <!-- item -->
+
+          <div class="item">
+            <div class="col-12">
+              <a href="#">
+                <img src="/static/assets/img/logo4.png" class="second-img mx-auto d-block img-fluid" alt="logo4">
+              </a>
+            </div>
+          </div> <!-- item -->
+
+          <div class="item">
+            <div class="col-12">
+              <a href="#">
+                <img src="/static/assets/img/logo1.png" class="second-img mx-auto d-block img-fluid" alt="logo1">
+              </a>
+            </div>
+          </div> <!-- item -->
+
+          <div class="item">
+            <div class="col-12">
+              <a href="#">
+                <img src="/static/assets/img/logo2.png" class="second-img mx-auto d-block img-fluid" alt="logo2">
+              </a>
+            </div>
+          </div> <!-- item -->
+
+          <div class="item">
+            <div class="col-12">
+              <a href="#">
+                <img src="/static/assets/img/logo3.png" class="second-img mx-auto d-block img-fluid" alt="logo3">
+              </a>
+            </div>
+          </div> <!-- item -->
+
+        </div>
+      </div>
+    </div>
+  </div> <!-- row first_footer -->
+
+  <div class="third_footer">
+
+    <div class="container custom_container">
+      <div class="th_foo">
+        <div class="row">
+
+          <div class="col-xl-4 col-lg-3 col-md-3 col-12 f_col">
+            <div class="fst_col">
+              <div class="footer_title">
+                <h5 class="text-uppercase text-white">contact us<button class="toggle collapsed" data-toggle="collapse" data-target="#fproduct"></button></h5>
+              </div>
+              <div class="categorie collapse " id="fproduct">
+                <ul class="add_row">
+                  <li>
+                    <div>
+                      <a href="#"><svg width="18px" height="18px"><use xlink:href="#map"></use></svg></a>
+                    </div>
+                    <div class="data1 add">
+                      <a href="#">1093,  Marigold Lane,<br> Coral Way, Miami,<br>Florida, 33169</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="#"><svg height="16px" width="16px"><use xlink:href="#call" ></use></svg></a>
+                    </div>
+                    <div>
+                      <a href="#">610-403-403</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <a href="#"><svg height="16px" width="16px"><use xlink:href="#mail" ></use></svg></a>
+                    </div>
+                    <div>
+                      <a href="#" class="mail_f">company@example.com</a>
+                    </div>
+                  </li>
+                </ul>
+                <ul class="foo_pay">
+                  <li>
+                    <a href="#"><i class="fab fa-cc-mastercard"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-cc-visa"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fas fa-credit-card"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-cc-paypal"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-3 col-12">
+            <div class="sec_col">
+              <div class="footer_title">
+                <h5 class="text-uppercase text-white">my account<button class="toggle collapsed" data-toggle="collapse" data-target="#sproduct"></button></h5>
+              </div>
+              <div class="categorie collapse" id="sproduct">
+                <ul>
+                  <li><a href="about-us.html">About Us</a></li>
+                  <li><a href="#">Delivery Infomations</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Discount</a></li>
+                  <li><a href="#">Custom Service</a></li>
+                  <li><a href="#">Terms & Condition</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-3 col-12">
+            <div class="th_col">
+              <div class="footer_title">
+                <h5 class="text-uppercase text-white">categories<button class="toggle collapsed" data-toggle="collapse" data-target="#tproduct"></button></h5>
+              </div>
+              <div class="categorie collapse" id="tproduct">
+                <ul>
+                  <li><a href="#">airplanes</a></li>
+                  <li><a href="#">cars</a></li>
+                  <li><a href="#">Helicopters</a></li>
+                  <li><a href="#">Quadcopters</a></li>
+                  <li><a href="#">RC Boats & Yachts</a></li>
+                  <li><a href="#">RC Vehicle Parts</a></li>
+                  <li><a href="#">Drones Mini Drones</a></li>
+                  <li><a href="#">My personal info</a></li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-3 col-12">
+            <div class="fth_col">
+              <div class="footer_title">
+                <h5 class="text-uppercase text-white">information<button class="toggle collapsed" data-toggle="collapse" data-target="#fh_product"></button></h5>
+              </div>
+              <div class="categorie collapse" id="fh_product">
+                <ul>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Delivery</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Discount</a></li>
+                  <li><a href="#">Custom Service</a></li>
+                  <li><a href="#">Terms & Condition</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- row first_footer -->
+
+  <div class="fourth_footer">
+    <div class="container custom_container">
+      <div class="fth_foo">
+        <div class="row">
+          <div class="col-md-8 col-12 item_row d-sm-none d-none d-md-block">
+            <div>
+              <ul class="item_name1">
+                <li class="text-uppercase text-white font-weight-bolder">fashion-</li>
+                <li><a href="#"> Sofa</a></li>
+                <li><a href="#">Chair</a></li>
+                <li><a href="#">Dining table</a></li>
+                <li><a href="#">Desk</a></li>
+                <li><a href="#">Table</a></li>
+                <li><a href="#">Lowline TV Units</a></li>
+                <li><a href="#">Living room</a></li>
+                <li><a href="#">Bathroom</a></li>
+                <li><a href="#">Stool  </a></li>
+              </ul>
+            </div>
+            <div>
+              <ul class="item_name1">
+                <li class="text-uppercase text-white font-weight-bolder">furniture-</li>
+                <li><a href="#">Living room</a></li>
+                <li><a href="#">Bathroom</a></li>
+                <li><a href="#">Stool  </a></li>
+                <li><a href="#"> bedroom</a></li>
+                <li><a href="#">Table lamp</a></li>
+                <li><a href="#">Nightstand</a></li>
+                <li><a href="#">Pillow</a></li>
+                <li><a href="#"> computer desk</a></li>
+              </ul>
+            </div>
+            <div>
+              <ul class="item_name1">
+                <li class="text-uppercase text-white font-weight-bolder">fashion-</li>
+                <li><a href="#"> Sofa</a></li>
+                <li><a href="#">Chair</a></li>
+                <li><a href="#">Dining table</a></li>
+                <li><a href="#"> computer desk</a></li>
+                <li><a href="#"> nightstand</a></li>
+                <li><a href="#"> pillow</a></li>
+                <li><a href="#"> Clock</a></li>
+                <li><a href="#">Bathroom</a></li>
+                <li><a href="#">Stool  </a></li>
+                <li><a href="#"> bedroom</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-12">
+            <ul class="item_name2">
+              <li><h6  class="text-uppercase text-white font-weight-bold pb-3">download the app</h6></li>
+              <li>
+                <a href="#"><img src="/static/assets/img/foo_icon1.png" class="second-img img-fluid " alt="foo_icon1"></a>
+                <a href="#"><img src="/static/assets/img/foo_icon2.png" class="second-img img-fluid " alt="foo_icon2"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- row first_footer -->
+
+  <div class="fifth_footer">
+    <div class="container custom_container">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center demo_link d-block">2020 @ All rights reserved Powered by <a href="#">demo.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- row first_footer -->
+</div>
+<!-- footer -->
+
+<!-- footer end -->
+
+
+
+<script src="/static/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/static/assets/js/owl.carousel.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+<script src="/static/assets/js/popper.min.js"></script>
+<script src="/static/assets/js/all.min.js"></script>
+<script src="/static/assets/js/index.js"></script>
+<script src="/static/assets/js/wow.min.js"></script>
+
+<script>
+
+  var alDiv = document.getElementsByClassName('tab');
+  var alBtn = document.getElementsByTagName('h2');
+  alDiv[0].style.display = 'block';
+  var act = alBtn[0]
+  for (var i = 0; i < alBtn.length; i++) {
+    alBtn[i].indent = i;
+    alBtn[i].onclick = function() {
+      act.className = '';
+      alDiv[act.indent].style.display = 'none';
+      this.className = 'act'
+      alDiv[this.indent].style.display = 'block'
+      act = this
+    }
+  }
+
+  var btn2 = document.getElementsByClassName('btn2')[0];
+  var user = document.getElementsByClassName('user')[0];
+  var pass = document.getElementsByClassName('password')[0];
+  var err = document.getElementsByClassName('error')[0];
+  var err_img1 = document.getElementsByClassName('err_img1')[0];
+  var err_img2 = document.getElementsByClassName('err_img2')[0];
+
+  btn2.onclick = function() {
+    if (user.value == '' || pass.value == '') {
+      err.style.display = 'block';
+      user.style.border = '1px solid red';
+      pass.style.border = '1px solid red';
+      err_img1.src = 'JD_img/img11.png';
+      err_img2.src = 'JD_img/img22.png';
+    } else {
+
+      var a = document.getElementsByClassName("a")[0].href = "http://auth.mall.com/index.html";
+    }
+    user.onfocus = function() {
+      err_img1.src = 'JD_img/grow1.png';
+      user.style.border = '1px solid #999';
+    }
+    pass.onfocus = function() {
+      err_img2.src = 'JD_img/grow2.png';
+      pass.style.border = '1px solid #999';
+    }
+    user.onblur = function() {
+      err_img1.src = 'JD_img/img11.png';
+      user.style.border = '1px solid red';
+    }
+    pass.onblur = function() {
+      err_img2.src = 'JD_img/img22.png';
+      pass.style.border = '1px solid red';
+    }
+  };
+  // Disable form submissions if there are invalid fields
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Get the forms we want to add validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+
+</script>
+
+</body>
 </html>

@@ -17,7 +17,9 @@ spring:
     name: mall-user
   redis:
     port: 6379
-    host: 192.168.77.130
+    host: 192.168.255.128
+  session:
+    store-type: redis
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml
   global-config:
@@ -38,8 +40,7 @@ feign:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 
-  session:
-    store-type: redis
+
 
 #暴露所有端点
 management:

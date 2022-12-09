@@ -10,55 +10,119 @@
     <link rel="stylesheet" type="text/css" href="/cart/css/swiper.min.css"/>
     <link rel="stylesheet" type="text/css" href="/cart/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="/cart/css/success.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/owl.theme.default.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/Favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/assets/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/media.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/owl.theme.default.css">
+
 </head>
 
 <body>
 <!--头部-->
-<div class="alert-info">
-    <div class="hd_wrap_top">
-        <ul class="hd_wrap_left">
-            <li class="hd_home"><i class="glyphicon glyphicon-home"></i>
-                <a href="http://mall.com">谷粒商城首页</a>
-            </li>
-
-        </ul>
-
-        <ul class="hd_wrap_right">
-            <li>
-                <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/login.html" class="li_2">请登录</a>
-                <a th:if="${session.loginUser != null}">欢迎, [[${session.loginUser.nickname}]]</a>
-            </li>
-            <li>
-                <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/reg.html" style="color: red;">免费注册</a>
-            </li>
-            <li class="spacer"></li>
-
-            <li>
-                <a href="/javascript:;">我的订单</a>
-            </li>
+<header>
+    <div class="topbar-outer py-2 border-bottom bg-white d-md-none d-none d-none d-lg-block">
+        <div class="container custom_container">
+            <div class="row">
+                <div class="col-lg-5 col-md-4 col-sm-4 topbar_right">
+                    <ul>
+                        <li>
+                            <span class="font-weight-bolder">
+                                <ul>
+        <li>
+          <a th:if="${session.loginUser != null}">欢迎, [[${session.loginUser.username}]]</a>
+          <a th:if="${session.loginUser == null}" href="http://auth.mall.com/login.html">你好，请登录</a>
+        </li>
+        <li>
+          <a th:if="${session.loginUser == null}" href="http://auth.mall.com/reg.html" class="li_2">免费注册</a>
+        </li>
+        <li>
+          <a th:if="${session.loginUser != null}" href="http://auth.mall.com/loguot.html" class="li_2">立即退出</a>
+        </li>
 
 
-        </ul>
 
-    </div>
-</div>
+      </ul></span>
+                        </li>
+                    </ul>
+                </div> <!-- col-lg-5 col-md-4 col-sm-4 hidden-md-down topbar_left -->
 
-<div class="nav-tabs-justified">
-    <div class="nav_wrap">
+                <!--                </div> &lt;!&ndash; col-lg-7 col-md-8 col-sm-8 text-xs-right hidden-md-down topbar_right text-right &ndash;&gt;-->
+            </div> <!-- row -->
+        </div> <!-- container custom_container -->
+    </div> <!-- topbar-outer py-2 border-bottom bg-white -->
 
-        <div class="nav_top">
-            <div class="nav_top_one">
-                <a href="http://mall.com"><img src="/cart/img/logo1.jpg" style="height: 60px;width:180px;"/></a>
-            </div>
-            <div class="nav_top_two"><input type="text"/>
-                <button>搜索</button>
-            </div>
+    <!-- second row -->
+
+    <div class="header-top py-4 border-bottom bg-white sticky-md-top">
+        <div class="container custom_container header-top-container">
+            <div class="row">
+                <div class="col-xl-2 col-lg-2 col-6  head-logo">
+                    <div class="text-left header-top-left pt-2"><a href="http://mall.com"><img src="/assets/img/logo.jpg" class="img-responsive img" alt="Hitech"></a></div>
+                </div> <!-- col-xl-2 col-lg-2 col-md-2 col-sm-3 head-logo -->
+                <div class="col-xl-10 col-lg-10 col-6  head-search">
+                    <div class="d-flex navbar">
+                        <div class="input-class  text-left col-xl-8 col-lg-7 col-md-12  ">
+                            <div class="between-header border border-danger rounded mb-0 head-left">
+
+                                <select class="select-menu form-select d-none d-sm-block" >
+                                    <option value="selected">all categories</option>
+                                </select>
 
 
-        </div>
+                                <div class="input-group">
+                                    <input type="text" placeholder="search" id="searchText" class="form-control" aria-label="search" aria-describedby="button-addon2">
+                                    <div class="input-group-btn"><a href="javascript:search();" ><button type="button" class="btn btn-danger text-uppercase font-weight-normal">search</button></a></div>
+                                </div>
+                            </div> <!-- between-header text-left col-sm-8 head-left border border-danger rounded mb-0 -->
+                        </div>
 
-    </div>
-</div>
+                        <div class="col-xl-4 col-lg-5 head-right text-right">
+                            <ul>
+
+                                <li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
+                                    <a href="http://user.mall.com/memberOrder.html">
+                                        <span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><img src="/assets/img/order.jpg" width="35px" height="35px" ></img></span>
+                                        <span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">我的订单</span>
+                                    </a>
+                                </li>
+
+                                <!--								<li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">-->
+                                <!--									<a href="http://cart.mall.com/cart.html">-->
+                                <!--										<span class="rcom d-lg-inline-block d-md-none d-sm-none d-none"><img src="/assets/img/cart.png" width="35px" height="35px" ></img></span>-->
+                                <!--										<span class="comp_wish align-middle d-lg-inline-block font-weight-bolder">我的订单</span>-->
+                                <!--									</a>-->
+                                <!--								</li>-->
+
+
+                                <li class="md_wish d-lg-inline-block d-md-none d-sm-none d-none">
+                                    <a href="http://cart.mall.com/cart.html">
+                                        <span><svg width="35px" height="35px"><use xlink:href="#cart"></use></svg></span>
+                                        购物车
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div> <!-- col-sm-4 head-right text-right -->
+
+                    </div> <!-- row -->
+                </div> <!-- col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 head-search -->
+            </div> <!-- row -->
+        </div> <!--  container custom_container -->
+    </div> <!-- header-top py-4 border-bottom bg-white -->
+
+    <!-- third row -->
+
+</header>
 
 <div class="main">
 
@@ -79,6 +143,7 @@
                                     <a th:href="'http://item.mall.com/'+${item.skuId}+'.html'"
                                        th:text="${item.title}"></a>
                                 </div>
+
                                 <div class="p-extra"><span class="txt" th:text="'数量：'+${item.count}"> </span></div>
                             </div>
                             <div class="clr"></div>
@@ -105,7 +170,302 @@
     </div>
 
 </div>
+
+<!--底部-->
+<div class="footer">
+    <div class="first_footer">
+        <div class="container custom_container">
+            <div class="row">
+                <div class="col-lg-6 col-md-7 col-12 d-none d-sm-none d-md-block">
+                    <span class="d-inline-block"><svg width="110px" height="110px"><use xlink:href="#send"></use></svg></span>
+                    <div class="newsletter d-inline-block align-middle">
+                        <h4 class="text-light">Join Our Newsletter Now</h4>
+                        <p class="mb-0">Register to get updates on promotions.</p>
+                    </div>
+                </div> <!-- col-md-5 col-12 -->
+                <div class="col-lg-6 col-md-5 col-sm-12 col-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-white" placeholder="Subscribe newsletter..." aria-label="Subscribe newsletter..." aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary text-uppercase" type="button" id="button-addon2">submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- row first_footer -->
+
+    <div class="second_footer ">
+        <div class="container custom_container">
+            <div class="row">
+                <div id="logo_carousel" class="owl-carousel owl-theme ">
+
+                    <div class="item">
+                        <div class="col-12">
+                            <a href="#">
+                                <img src="/assets/img/logo1.png" class="second-img mx-auto d-block img-fluid" alt="logo1">
+                            </a>
+                        </div>
+                    </div> <!-- item -->
+
+                    <div class="item">
+                        <div class="col-12">
+                            <a href="#">
+                                <img src="/assets/img/logo2.png" class="second-img mx-auto d-block img-fluid" alt="logo2">
+                            </a>
+                        </div>
+                    </div> <!-- item -->
+
+                    <div class="item">
+                        <div class="col-12">
+                            <a href="#">
+                                <img src="/assets/img/logo3.png" class="second-img mx-auto d-block img-fluid" alt="logo3">
+                            </a>
+                        </div>
+                    </div> <!-- item -->
+
+                    <div class="item">
+                        <div class="col-12">
+                            <a href="#">
+                                <img src="/assets/img/logo4.png" class="second-img mx-auto d-block img-fluid" alt="logo4">
+                            </a>
+                        </div>
+                    </div> <!-- item -->
+
+                    <div class="item">
+                        <div class="col-12">
+                            <a href="#">
+                                <img src="/assets/img/logo1.png" class="second-img mx-auto d-block img-fluid" alt="logo1">
+                            </a>
+                        </div>
+                    </div> <!-- item -->
+
+                    <div class="item">
+                        <div class="col-12">
+                            <a href="#">
+                                <img src="/assets/img/logo2.png" class="second-img mx-auto d-block img-fluid" alt="logo2">
+                            </a>
+                        </div>
+                    </div> <!-- item -->
+
+                    <div class="item">
+                        <div class="col-12">
+                            <a href="#">
+                                <img src="/assets/img/logo3.png" class="second-img mx-auto d-block img-fluid" alt="logo3">
+                            </a>
+                        </div>
+                    </div> <!-- item -->
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- row first_footer -->
+
+    <div class="third_footer">
+
+        <div class="container custom_container">
+            <div class="th_foo">
+                <div class="row">
+
+                    <div class="col-xl-4 col-lg-3 col-md-3 col-12 f_col">
+                        <div class="fst_col">
+                            <div class="footer_title">
+                                <h5 class="text-uppercase text-white">contact us<button class="toggle collapsed" data-toggle="collapse" data-target="#fproduct"></button></h5>
+                            </div>
+                            <div class="categorie collapse " id="fproduct">
+                                <ul class="add_row">
+                                    <li>
+                                        <div>
+                                            <a href="#"><svg width="18px" height="18px"><use xlink:href="#map"></use></svg></a>
+                                        </div>
+                                        <div class="data1 add">
+                                            <a href="#">1093,  Marigold Lane,<br> Coral Way, Miami,<br>Florida, 33169</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <a href="#"><svg height="16px" width="16px"><use xlink:href="#call" ></use></svg></a>
+                                        </div>
+                                        <div>
+                                            <a href="#">610-403-403</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <a href="#"><svg height="16px" width="16px"><use xlink:href="#mail" ></use></svg></a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="mail_f">company@example.com</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="foo_pay">
+                                    <li>
+                                        <a href="#"><i class="fab fa-cc-mastercard"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-cc-visa"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fas fa-credit-card"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-cc-paypal"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-12">
+                        <div class="sec_col">
+                            <div class="footer_title">
+                                <h5 class="text-uppercase text-white">my account<button class="toggle collapsed" data-toggle="collapse" data-target="#sproduct"></button></h5>
+                            </div>
+                            <div class="categorie collapse" id="sproduct">
+                                <ul>
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="#">Delivery Infomations</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Discount</a></li>
+                                    <li><a href="#">Custom Service</a></li>
+                                    <li><a href="#">Terms & Condition</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-12">
+                        <div class="th_col">
+                            <div class="footer_title">
+                                <h5 class="text-uppercase text-white">categories<button class="toggle collapsed" data-toggle="collapse" data-target="#tproduct"></button></h5>
+                            </div>
+                            <div class="categorie collapse" id="tproduct">
+                                <ul>
+                                    <li><a href="#">airplanes</a></li>
+                                    <li><a href="#">cars</a></li>
+                                    <li><a href="#">Helicopters</a></li>
+                                    <li><a href="#">Quadcopters</a></li>
+                                    <li><a href="#">RC Boats & Yachts</a></li>
+                                    <li><a href="#">RC Vehicle Parts</a></li>
+                                    <li><a href="#">Drones Mini Drones</a></li>
+                                    <li><a href="#">My personal info</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-12">
+                        <div class="fth_col">
+                            <div class="footer_title">
+                                <h5 class="text-uppercase text-white">information<button class="toggle collapsed" data-toggle="collapse" data-target="#fh_product"></button></h5>
+                            </div>
+                            <div class="categorie collapse" id="fh_product">
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Discount</a></li>
+                                    <li><a href="#">Custom Service</a></li>
+                                    <li><a href="#">Terms & Condition</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- row first_footer -->
+
+    <div class="fourth_footer">
+        <div class="container custom_container">
+            <div class="fth_foo">
+                <div class="row">
+                    <div class="col-md-8 col-12 item_row d-sm-none d-none d-md-block">
+                        <div>
+                            <ul class="item_name1">
+                                <li class="text-uppercase text-white font-weight-bolder">fashion-</li>
+                                <li><a href="#"> Sofa</a></li>
+                                <li><a href="#">Chair</a></li>
+                                <li><a href="#">Dining table</a></li>
+                                <li><a href="#">Desk</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li><a href="#">Lowline TV Units</a></li>
+                                <li><a href="#">Living room</a></li>
+                                <li><a href="#">Bathroom</a></li>
+                                <li><a href="#">Stool  </a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="item_name1">
+                                <li class="text-uppercase text-white font-weight-bolder">furniture-</li>
+                                <li><a href="#">Living room</a></li>
+                                <li><a href="#">Bathroom</a></li>
+                                <li><a href="#">Stool  </a></li>
+                                <li><a href="#"> bedroom</a></li>
+                                <li><a href="#">Table lamp</a></li>
+                                <li><a href="#">Nightstand</a></li>
+                                <li><a href="#">Pillow</a></li>
+                                <li><a href="#"> computer desk</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="item_name1">
+                                <li class="text-uppercase text-white font-weight-bolder">fashion-</li>
+                                <li><a href="#"> Sofa</a></li>
+                                <li><a href="#">Chair</a></li>
+                                <li><a href="#">Dining table</a></li>
+                                <li><a href="#"> computer desk</a></li>
+                                <li><a href="#"> nightstand</a></li>
+                                <li><a href="#"> pillow</a></li>
+                                <li><a href="#"> Clock</a></li>
+                                <li><a href="#">Bathroom</a></li>
+                                <li><a href="#">Stool  </a></li>
+                                <li><a href="#"> bedroom</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-12">
+                        <ul class="item_name2">
+                            <li><h6  class="text-uppercase text-white font-weight-bold pb-3">download the app</h6></li>
+                            <li>
+                                <a href="#"><img src="/assets/img/foo_icon1.png" class="second-img img-fluid " alt="foo_icon1"></a>
+                                <a href="#"><img src="/assets/img/foo_icon2.png" class="second-img img-fluid " alt="foo_icon2"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- row first_footer -->
+
+    <div class="fifth_footer">
+        <div class="container custom_container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center demo_link d-block">2020 @ All rights reserved Powered by <a href="#">demo.com</a></div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- row first_footer -->
+</div>
 </body>
 <script type="text/javascript" src="/cart/js/success.js"></script>
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/owl.carousel.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/all.min.js"></script>
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/wow.min.js"></script>
+<script src="/cart/js/index.js" charset="utf-8"></script>
+<script type="text/javascript">
 
+    function search() {
+        var keyword=$("#searchText").val()
+        window.location.href="http://search.mall.com/list.html?keyword="+keyword;
+    }
+
+</script>
 </html>

@@ -14,7 +14,6 @@ import com.example.mall.product.feign.StockFeignService;
 import com.example.mall.product.service.*;
 import com.example.mall.product.vo.*;
 import org.apache.commons.lang.StringUtils;
-import org.omg.CORBA.Bounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -320,6 +319,30 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             //远程调用失败
             //TODO 7、重复调用？接口幂等性:重试机制
         }
+    }
+
+    /**
+     * 根据skuId查询spu的信息
+     * @param skuId
+     * @return
+     */
+    @Override
+    public SpuInfoEntity getSpuInfoBySkuId(Long skuId) {
+
+        //先查询sku表里的数据
+        SkuInfoEntity skuInfoEntity = skuInfoService.getById(skuId);
+
+        //获得spuId
+        Long spuId = skuInfoEntity.getSpuId();
+
+        //再通过spuId查询spuInfo信息表里的数据
+        SpuInfoEntity spuInfoEntity = this.baseMapper.selectById(spuId);
+
+        //查询品牌表的数据获取品牌名
+        BrandEntity brandEntity = brandService.getById(spuInfoEntity.getBrandId());
+        spuInfoEntity.setBrandName(brandEntity.getName());
+
+        return spuInfoEntity;
     }
 
     public void saveBaseSpuInfo(SpuInfoEntity spuInfoEntity) {

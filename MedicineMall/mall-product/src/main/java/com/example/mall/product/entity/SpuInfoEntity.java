@@ -1,5 +1,6 @@
 package com.example.mall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -57,5 +58,9 @@ public class SpuInfoEntity implements Serializable {
 	 * 
 	 */
 	private Date updateTime;
-
+	/**
+	 * 品牌名
+	 */
+	@TableField(exist = false)
+	private String brandName;
 }

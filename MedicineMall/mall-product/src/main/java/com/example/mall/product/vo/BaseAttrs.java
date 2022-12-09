@@ -5,8 +5,9 @@ import lombok.Data;
 
 
 /**
+ * Auto-generated: 2020-05-31 11:3:26
  *
- * @author
+ * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
 

@@ -1,9 +1,10 @@
 package com.example.mall.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.common.to.mq.SeckillOrderTo;
 import com.example.common.utils.PageUtils;
 import com.example.mall.order.entity.OrderEntity;
-import com.example.mall.order.vo.OrderConfirmVo;
+import com.example.mall.order.vo.*;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -26,5 +27,21 @@ public interface OrderService extends IService<OrderEntity> {
     OrderConfirmVo confirmOrder() throws ExecutionException, InterruptedException;
 
     PageUtils queryPageWithItem(Map<String, Object> params);
+
+    OrderEntity getOrderByOrderSn(String orderSn);
+
+    PayVo getOrderPay(String orderSn);
+
+    SubmitOrderResponseVo submitOrder(OrderSubmitVo vo);
+
+    void createSeckillOrder(SeckillOrderTo orderTo);
+
+    void closeOrder(OrderEntity orderEntity);
+
+    String handlePayResult(PayAsyncVo asyncVo);
+
+    String asyncNotify(String notifyData);
+
+    void PayOrder(OrderEntity order);
 }
 

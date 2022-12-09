@@ -1,13 +1,12 @@
 package com.example.mall.product.vo;
 
+
 import com.example.common.to.MemberPrice;
 import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * @author wxl
- */
 @Data
 public class Skus {
     private List<Attr> attr;

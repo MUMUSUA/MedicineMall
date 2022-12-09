@@ -1,7 +1,7 @@
 package com.example.mall.order.feign;
 
 import com.example.common.utils.R;
-import com.example.mall.stock.vo.StockSkuLockVo;
+import com.example.mall.order.vo.WareSkuLockVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author:wxl
  * @date:2022/12/01
  **/
-@FeignClient("gulimall-stock")
+@FeignClient("mall-stock")
 public interface WmsFeignService {
 
     /**
@@ -23,7 +23,7 @@ public interface WmsFeignService {
      * @return
      */
     @PostMapping(value = "stock/stocksku/hasStock")
-    public R getSkuHasStock(@RequestBody List<Long> skuIds);
+    R getSkuHasStock(@RequestBody List<Long> skuIds);
 
 
     /**
@@ -32,7 +32,7 @@ public interface WmsFeignService {
      * @return
      */
     @GetMapping(value = "/stock/stockinfo/fare")
-    public R getFare(@RequestParam("addrId") Long addrId);
+    R getFare(@RequestParam("addrId") Long addrId);
 
 
     /**
@@ -41,5 +41,5 @@ public interface WmsFeignService {
      * @return
      */
     @PostMapping(value = "/stock/stocksku/lock/order")
-    public R orderLockStock(@RequestBody StockSkuLockVo vo);
+    R orderLockStock(@RequestBody WareSkuLockVo vo);
 }

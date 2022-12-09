@@ -3,13 +3,10 @@ package com.example.mall.stock.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.example.mall.stock.vo.FareVo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.mall.stock.entity.StockInfoEntity;
 import com.example.mall.stock.service.StockInfoService;
@@ -86,5 +83,15 @@ public class StockInfoController {
 
         return R.ok();
     }
+    /**
+     * 获取运费信息
+     * @return
+     */
+    @GetMapping(value = "/fare")
+    public R getFare(@RequestParam("addrId") Long addrId) {
 
+        FareVo fare = stockInfoService.getFare(addrId);
+
+        return R.ok().setData(fare);
+    }
 }

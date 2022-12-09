@@ -25,9 +25,16 @@ public class LoginUserInterceptor implements HandlerInterceptor {
 
         String uri = request.getRequestURI();
         boolean match = new AntPathMatcher().match("/user/**", uri);
-        if (match) {
+        boolean match2=new AntPathMatcher().match("/user/user/login", uri);
+        if (match || match2) {
             return true;
         }
+
+//        String uri = request.getRequestURI();
+//        boolean match = new AntPathMatcher().match("/user/user/**", uri);
+//        if (match ) {
+//            return true;
+//        }
 
         HttpSession session = request.getSession();
 

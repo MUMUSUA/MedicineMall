@@ -1,7 +1,6 @@
 package com.example.mall.product.vo;
 
 import lombok.Data;
-import org.omg.CORBA.Bounds;
 
 import java.math.BigDecimal;
 import java.util.List;

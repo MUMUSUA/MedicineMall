@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>订单待付</title>
+		<title></title>
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE" />
 		<link rel="stylesheet" type="text/css" href="/order/detail/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="/order/detail/css/scss.css" />
@@ -17,7 +17,7 @@
 				<div class="min">
 					<ul class="header_ul_left">
 						<li class="glyphicon glyphicon-home">
-							<a href="/order/detail/shouye.html" class="aa">谷粒商城首页</a>
+							<a href="http://mall.com" class="aa">医药商城首页</a>
 						</li>
 						<li class="glyphicon glyphicon-map-marker">
 							<a href="/order/detail/javascript:;">北京</a>
@@ -131,15 +131,16 @@
 						</li>
 					</ul>
 					<ul class="header_ul_right">
-						<li style="border: 0;">
-							<a href="/order/detail/denglu.html" class="aa">你好，请登录</a>
+						<li style="width: 100px;">
+							<a th:if="${session.loginUser != null}">欢迎, [[${session.loginUser.nickname}]]</a>
+							<a th:if="${session.loginUser == null}" href="http://auth.mall.com/login.html">你好，请登录</a>
 						</li>
 						<li>
-							<a href="/order/detail/javascript:;" style="color: red;">免费注册</a> |</li>
-						<li>
-							<a href="/order/detail/javascript:;" class="aa">我的订单</a> |</li>
+							<a th:if="${session.loginUser == null}" href="http://auth.mall.com/reg.html" class="li_2">免费注册</a>
+						</li>
+							<a href="http://order.mall.com/list.html" class="aa">我的订单</a> |</li>
 						<li class="jingdong" style="width:95px;">
-							<a href="/order/detail/javascript:;">我的谷粒商城</a><span class="glyphicon glyphicon-menu-down">|</span>
+							<a href="http://mall.com/">我的医药商城</a><span class="glyphicon glyphicon-menu-down">|</span>
 							<ol class="jingdong_ol">
 								<li>
 									<a href="/order/detail/javascript:;">待处理订单</a>
@@ -182,7 +183,7 @@
 							</ol>
 						</li>
 						<li style="width:80px;">
-							<a href="/order/detail/javascript:;" class="aa">谷粒商城会员</a> |</li>
+							<a href="/order/detail/javascript:;" class="aa">医药商城会员</a> |</li>
 						<li>
 							<a href="/order/detail/javascript:;" class="aa">企业采购</a> |</li>
 						<li class="fuwu">
@@ -240,14 +241,14 @@
 								<li style="width: 34%;">
 									<h5>特色主题</h5>
 									<p>
-										<a href="/order/detail/javascript:;">谷粒商城试用</a>
-										<a href="/order/detail/javascript:;">谷粒商城金融</a>
+										<a href="/order/detail/javascript:;">医药商城试用</a>
+										<a href="/order/detail/javascript:;">医药商城金融</a>
 										<a href="/order/detail/javascript:;">全球售</a>
 										<a href="/order/detail/javascript:;">国际站</a>
 									</p>
 									<p>
-										<a href="/order/detail/javascript:;">谷粒商城会员</a>
-										<a href="/order/detail/javascript:;">谷粒商城预售</a>
+										<a href="/order/detail/javascript:;">医药商城会员</a>
+										<a href="/order/detail/javascript:;">医药商城预售</a>
 										<a href="/order/detail/javascript:;">买什么</a>
 										<a href="/order/detail/javascript:;">俄语站</a>
 									</p>
@@ -264,7 +265,7 @@
 										<a href="/order/detail/javascript:;">印尼站</a>
 									</p>
 									<p>
-										<a href="/order/detail/javascript:;">谷粒商城金融科技</a>
+										<a href="/order/detail/javascript:;">医药商城金融科技</a>
 										<a href="/order/detail/javascript:;">In货推荐</a>
 										<a href="/order/detail/javascript:;">陪伴计划</a>
 										<a href="/order/detail/javascript:;">出海招商</a>
@@ -280,7 +281,7 @@
 									<p>
 										<a href="/order/detail/javascript:;" class="aa_2">电脑办公</a>
 										<a href="/order/detail/javascript:;" class="aa_2">家用电器</a>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城智能</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城智能</a>
 									</p>
 									<p>
 										<a href="/order/detail/javascript:;" class="aa_2">服装城</a>
@@ -301,12 +302,12 @@
 								<li>
 									<h5>生活服务</h5>
 									<p>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城众筹</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城众筹</a>
 										<a href="/order/detail/javascript:;" class="aa_2">白条</a>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城金融APP</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城金融APP</a>
 									</p>
 									<p>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城小金库</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城小金库</a>
 										<a href="/order/detail/javascript:;" class="aa_2">理财</a>
 										<a href="/order/detail/javascript:;" class="aa_2">智能家电</a>
 									</p>
@@ -321,8 +322,8 @@
 										<a href="/order/detail/javascript:;" class="aa_2">电影票</a>
 									</p>
 									<p>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城到家</a>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城众测</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城到家</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城众测</a>
 										<a href="/order/detail/javascript:;" class="aa_2">游戏</a>
 									</p>
 								</li>
@@ -330,8 +331,8 @@
 									<h5>更多精选</h5>
 									<p>
 										<a href="/order/detail/javascript:;" class="aa_2">合作招商</a>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城通信</a>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城E卡</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城通信</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城E卡</a>
 									</p>
 									<p>
 										<a href="/order/detail/javascript:;" class="aa_2">企业采购</a>
@@ -344,7 +345,7 @@
 										<a href="/order/detail/javascript:;" class="aa_2">京友邦</a>
 									</p>
 									<p>
-										<a href="/order/detail/javascript:;" class="aa_2">谷粒商城社区</a>
+										<a href="/order/detail/javascript:;" class="aa_2">医药商城社区</a>
 										<a href="/order/detail/javascript:;" class="aa_2">智能社区</a>
 										<a href="/order/detail/javascript:;" class="aa_2">游戏社区</a>
 									</p>
@@ -357,12 +358,12 @@
 							</ol>
 						</li>
 						<li class="sjjd" style="border: 0;">
-							<a href="/order/detail/javascript:;" class="aa">手机谷粒商城</a>
+							<a href="/order/detail/javascript:;" class="aa">手机医药商城</a>
 							<div class="er">
 								<div class="er_1">
 									<img src="/order/detail/img/59a51bf6Nb8e478cc.png" />
 									<div class="er_1_1">
-										<h6><a href="/order/detail/#">手机谷粒商城</a></h6>
+										<h6><a href="/order/detail/#">手机医药商城</a></h6>
 										<p>新人专享大礼包</p>
 										<div>
 											<a href="/order/detail/#"><img src="/order/detail/img/11.png" /></a>
@@ -374,14 +375,14 @@
 								<div class="er_1">
 									<img src="/order/detail/img/5874a54dNcec29924.jpg" />
 									<div class="er_1_1">
-										<h6><a href="/order/detail/#">关注谷粒商城微信</a></h6>
+										<h6><a href="/order/detail/#">关注医药商城微信</a></h6>
 										<p>微信扫一扫关注新粉最高180元惊喜礼包</p>
 									</div>
 								</div>
 								<div class="er_1" style="border: 0;">
 									<img src="/order/detail/img/5874a555Ne8192324.jpg" />
 									<div class="er_1_1">
-										<h6><a href="/order/detail/#">谷粒商城金融客户端</a></h6>
+										<h6><a href="/order/detail/#">医药商城金融客户端</a></h6>
 										<p>新人专享大礼包</p>
 										<div>
 											<a href="/order/detail/#"><img src="/order/detail/img/11.png" /></a>
@@ -399,11 +400,11 @@
 				<div class="nav_min">
 					<div class="nav_top">
 						<div class="nav_top_one">
-							<a href="/order/detail/javascript:;"><img src="/order/detail/img/logo1.jpg" /></a>
+							<a href="http://mall.com/"><img src="/order/detail/img/logo1.jpg" /></a>
 						</div>
 						<div class="nav_top_two"><input type="text" /><button>搜索</button></div>
 						<div class="nav_top_three">
-							<a href="/order/detail/../JD_Shop/One_JDshop.html">我的购物车</a><span class="glyphicon glyphicon-shopping-cart"></span>
+							<a href="http://cart.mall.com/cart.html">我的购物车</a><span class="glyphicon glyphicon-shopping-cart"></span>
 							<div class="nav_top_three_1">
 								<img src="/order/detail/img/44.png" />购物车还没有商品，赶紧选购吧！
 							</div>
@@ -420,7 +421,7 @@
 				</div>
 				<div class="content_myjd">
 					<div class="breadcrumb">
-						<a href="/order/detail///home.jd.com/">我的谷粒商城</a><span>&nbsp;&gt;&nbsp;<a href="/order.mall.com/center/list.action">订单中心</a>&nbsp;&gt;&nbsp;<strong>订单：70716422916</strong></span></div>
+						<a href="/order/detail/home.jd.com/">我的医药商城</a><span>&nbsp;&gt;&nbsp;<a href="/order/detail/order.jd.com/center/list.action">订单中心</a>&nbsp;&gt;&nbsp;<strong>订单：70716422916</strong></span></div>
 				</div>
 				<div class="order-state01">
 					<div class="state-cont">
@@ -431,8 +432,8 @@
 
 							<span class="remain-time" style=""><b class="b1"></b>剩余4时51分</span>
 							<div class="state-btns">
-								<a class="btn-1" onclick='location.href=("pay.html")'>付款</a>
-								<a class="btn-2" onclick='location.href=("pay.html")' >找人代付</a>
+								<a class="btn-1">付款</a>
+								<a class="btn-2">找人代付</a>
 							</div>
 							<div class="state-bottom">
 								<span class="span1"><b class="b1"></b>打印订单</span>
@@ -667,7 +668,7 @@
 												<div class="yf-box">
 													<div class="item"><label>基础运费：</label><span>￥12.00</span></div>
 													<div class="item"><label>续重运费：</label><span>￥0.00</span>
-														<a href="/order/detail///help.jd.com/user/issue/109-188.html" target="_blank"> 查看续重标准&gt;</a>
+														<a href="/order/detail/help.jd.com/user/issue/109-188.html" target="_blank"> 查看续重标准&gt;</a>
 													</div>
 												</div>
 											</div>
@@ -709,7 +710,7 @@
 					</span>
 										<div class="info-rcol">
 											<span class="f-price">
-                        ¥<0 class="00"></a>
+                        ¥<0 class="00"></0>
                     </span>
 										</div>
 									</div>
@@ -817,15 +818,15 @@
 						</li>
 					</ul>
 				</div>
-				<!--谷粒商城-->
-				<div class="jdwenzi">谷粒商城<span></span></div>
+				<!--医药商城-->
+				<div class="jdwenzi">医药商城<span></span></div>
 				<!--商品信息-->
 				<div class="shop_sta_xinin">
 					<table>
 						<tr>
 							<th style="width: 500px;">商品</th>
 							<th>商品编号</th>
-							<th>谷粒商城价</th>
+							<th>医药商城价</th>
 							<th>商品数量</th>
 							<th>京豆</th>
 							<th>操作</th>
@@ -833,7 +834,7 @@
 						<tr>
 							<td><img src="/order/detail/image/5886ffa5Na5e39e2d.jpg"/>
 							<div style="display: inline-block;">
-								<p><b></b><a href="/order/detail///item.jd.com/1778772.html" class="a-link" target="_blank" title="伊利 风味发酵乳 原味酸奶100g*8（两件起售）">伊利 风味发酵乳 原味酸奶100g*8（两件起售）</a></p>
+								<p><b></b><a href="/order/detail/item.jd.com/1778772.html" class="a-link" target="_blank" title="伊利 风味发酵乳 原味酸奶100g*8（两件起售）">伊利 风味发酵乳 原味酸奶100g*8（两件起售）</a></p>
 							<p class="txt">益消 原味八连杯100g*</p>
 							</div>
 							</td>
@@ -875,7 +876,7 @@
 					<div class="xuanxiangka">
 						<ul class="ul1">
 							<li >
-								<ul class="ul2">
+								<ul class="ul2" ">
 									<li>
 										<img src="/order/detail/image/5a0bf933N27e3b0be.jpg"/>
 										<p class="p1">展卉 泰国进口龙眼 1kg 新鲜水果</p>
@@ -986,10 +987,10 @@
 					 $(".r1 span").mouseover(function(){
 
 						 var index=$(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
-						 console.log(datils)
+						 console.log(index)
 						 $(this).css('background','red').siblings().css('background','white')
 						 $(this).css('color','white').siblings().css('color','black')
-						 $(".xuanxiangka .ul1>li").eq(datils).css('display','block').siblings().css('display','none');
+						 $(".xuanxiangka .ul1>li").eq(index).css('display','block').siblings().css('display','none');
 
 					});
 				</script>
@@ -1102,13 +1103,13 @@
 									<a href="/order/detail/javascript:;">延保服务</a>
 								</dd>
 								<dd>
-									<a href="/order/detail/javascript:;">谷粒商城E卡</a>
+									<a href="/order/detail/javascript:;">医药商城E卡</a>
 								</dd>
 								<dd>
-									<a href="/order/detail/javascript:;">谷粒商城通信</a>
+									<a href="/order/detail/javascript:;">医药商城通信</a>
 								</dd>
 								<dd>
-									<a href="/order/detail/javascript:;">谷粒商城JD+</a>
+									<a href="/order/detail/javascript:;">医药商城JD+</a>
 								</dd>
 							</dl>
 						</div>
@@ -1125,13 +1126,13 @@
 							<a href="/order/detail/javascript:;" target="_blank">合作招商</a><span class="copyright_split">|</span>
 							<a href="/order/detail/javascript:;" target="_blank">商家帮助</a><span class="copyright_split">|</span>
 							<a href="/order/detail/javascript:;" target="_blank">营销中心</a><span class="copyright_split">|</span>
-							<a href="/order/detail/javascript:;" target="_blank">手机谷粒商城</a><span class="copyright_split">|</span>
+							<a href="/order/detail/javascript:;" target="_blank">手机医药商城</a><span class="copyright_split">|</span>
 							<a href="/order/detail/javascript:;" target="_blank">友情链接</a><span class="copyright_split">|</span>
 							<a href="/order/detail/javascript:;" target="_blank">销售联盟</a><span class="copyright_split">|</span>
-							<a href="/order/detail/javascript:;" target="_blank">谷粒商城社区</a><span class="copyright_split">|</span>
+							<a href="/order/detail/javascript:;" target="_blank">医药商城社区</a><span class="copyright_split">|</span>
 							<a href="/order/detail/javascript:;" target="_blank">风险监测</a><span class="copyright_split">|</span>
 							<a href="/order/detail/javascript:;" target="_blank">隐私政策</a><span class="copyright_split">|</span>
-							<a href="/order/detail/javascript:;" target="_blank">谷粒商城公益</a><span class="copyright_split">|</span>
+							<a href="/order/detail/javascript:;" target="_blank">医药商城公益</a><span class="copyright_split">|</span>
 							<a href="/order/detail/javascript:;" target="_blank">English Site</a><span class="copyright_split">|</span>
 							<a href="/order/detail/javascript:;" target="_blank">Contact Us</a>
 						</p>
@@ -1147,13 +1148,13 @@
 							<a href="/order/detail/javascript:;" target="_blank">网络文化经营许可证京网文[2014]2148-348号</a><span class="copyright_split">|</span><span>违法和不良信息举报电话：4006561155</span>
 						</p>
 						<p class="bg_info_p">
-							<span class="copyright_text">Copyright&nbsp;©&nbsp;2004&nbsp;-&nbsp;<em id="copyright_year">2017</em>&nbsp;&nbsp;谷粒商城gulimall.com&nbsp;版权所有</span><span class="copyright_split">|</span><span>消费者维权热线：4006067733</span>
+							<span class="copyright_text">Copyright&nbsp;©&nbsp;2004&nbsp;-&nbsp;<em id="copyright_year">2017</em>&nbsp;&nbsp;医药商城mall.com&nbsp;版权所有</span><span class="copyright_split">|</span><span>消费者维权热线：4006067733</span>
 							<a href="/order/detail/javascript:;" target="_blank" class="copyright_license">经营证照</a>
 						</p>
 						<p class="bg_info_p">
-							<span>谷粒商城旗下网站：</span>
-							<a href="/order/detail/javascript:;" target="_blank">谷粒商城钱包</a><span class="copyright_split">|</span>
-							<a href="/order/detail/javascript:;" target="_blank">谷粒商城云</a>
+							<span>医药商城旗下网站：</span>
+							<a href="/order/detail/javascript:;" target="_blank">医药商城钱包</a><span class="copyright_split">|</span>
+							<a href="/order/detail/javascript:;" target="_blank">医药商城云</a>
 						</p>
 						<p class="bg_info_dy">
 							<a class="copyright_auth_ico copyright_auth_ico_1" href="/order/detail/javascript:;" target="_blank">经营性网站备案中心</a>
@@ -1168,28 +1169,27 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="fix_ed">
 			<ul class="uls">
 				<li class="i1">
 					<div class="xian_hied">
-					<div class="service-cont problem-cont">
+			<div class="service-cont problem-cont">
                         <div class="problem-top">
                             <h5>常见问题</h5>
                             <a href="/order/detail/#none" class="close">x</a>
                         </div>
                         <div class="problem-list">
-                            <a href="/order/detail///help.jd.com/user/issue/102-250.html">1、我的包裹几天可以收到？</a>
-                            <a href="/order/detail///help.jd.com/user/issue/103-983.html">2、我的地址都支持什么配送服务？</a>
-                            <a href="/order/detail///help.jd.com/user/issue/108-385.html">3、订单签收异常了怎么办？</a>
-                            <a href="/order/detail///help.jd.com/user/issue/75-244.html">4、下单后可以修改订单吗？</a>
-                            <a href="/order/detail///help.jd.com/user/issue/100-1014.html">5、自提点位置如何查询？</a>
-                            <a href="/order/detail//datils.html/help.jd.com/user/index.html" class="more">更多问题&nbsp;&gt;</a>
+                            <a href="/order/detail/help.jd.com/user/issue/102-250.html">1、我的包裹几天可以收到？</a>
+                            <a href="/order/detail/help.jd.com/user/issue/103-983.html">2、我的地址都支持什么配送服务？</a>
+                            <a href="/order/detail/help.jd.com/user/issue/108-385.html">3、订单签收异常了怎么办？</a>
+                            <a href="/order/detail/help.jd.com/user/issue/75-244.html">4、下单后可以修改订单吗？</a>
+                            <a href="/order/detail/help.jd.com/user/issue/100-1014.html">5、自提点位置如何查询？</a>
+                            <a href="/order/detail/help.jd.com/user/index.html" class="more">更多问题&nbsp;&gt;</a>
                         </div>
                     </div>
 				</li>
 				<li class="i2">
-						<div class="weweima">
+					<div class="weweima">
 						<p>微信扫描随时随地查订单</p>
 						<img src="/order/detail/image/erweima.png"/>
 					</div>

@@ -5,6 +5,7 @@ import com.example.mall.product.dao.BrandDao;
 import com.example.mall.product.dao.CategoryDao;
 import com.example.mall.product.entity.BrandEntity;
 import com.example.mall.product.service.BrandService;
+import com.example.mall.product.vo.BrandVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -81,6 +82,23 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
             //查询品牌的详情
             BrandEntity byId = brandService.getById(brandId);
             return byId;
+        }).collect(Collectors.toList());
+
+        return collect;
+//        return null;
+    }
+
+    @Override
+    public List<BrandVo> getBrandsByCatId2(Long catId) {
+        List<CategoryBrandRelationEntity> catelogId = relationDao.selectList(new QueryWrapper<CategoryBrandRelationEntity>().eq("catelog_id", catId));
+
+        List<BrandVo> collect = catelogId.stream().map(item -> {
+            Long brandId = item.getBrandId();
+            BrandVo vo=new BrandVo();
+            //查询品牌的详情
+           vo.setBrandId(brandService.getById(brandId).getBrandId());
+           vo.setBrandName(brandService.getById(brandId).getName());
+            return vo;
         }).collect(Collectors.toList());
 
         return collect;

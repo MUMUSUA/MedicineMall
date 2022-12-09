@@ -85,7 +85,7 @@ class MallThirdPartyApplicationTests {
         String host = "https://dfsns.market.alicloudapi.com";
         String path = "/data/send_sms";
         String method = "POST";
-        String appcode = "b0c7d1425850475a8683bd29879ea2f1";
+        String appcode = "18f07b227a1349aa83117422922782dd";
         Map<String, String> headers = new HashMap<String, String>();
         //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
         headers.put("Authorization", "APPCODE " + appcode);

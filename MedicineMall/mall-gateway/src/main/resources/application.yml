@@ -43,7 +43,7 @@ spring:
         - id: user_route
           uri: lb://mall-user
           predicates:
-            - Path=/api/user/**
+            - Path=/api/user/**,/api/member/**
           filters:
             - RewritePath=/api/?(?<segment>.*),/$\{segment}
 
@@ -54,12 +54,6 @@ spring:
           filters:
             - RewritePath=/api/?(?<segment>.*),/mall-admin/$\{segment}
 
-        - id: order_route
-          uri: lb://mall-order
-          predicates:
-            - Path=/api/order/**
-          filters:
-            - RewritePath=/api/?(?<segment>.*),/$\{segment}
 
 
         - id: mall_host_route
@@ -82,10 +76,20 @@ spring:
           predicates:
             - Host=auth.mall.com
 
-        - id: auth_route
+        - id: seckill_route
           uri: lb://mall-seckill
           predicates:
             - Host=seckill.mall.com
+
+        - id: mall_order_route
+          uri: lb://mall-order
+          predicates:
+            - Host=order.mall.com
+
+        - id: mall_user_route
+          uri: lb://mall-user
+          predicates:
+            - Host=user.mall.com
 
 
 

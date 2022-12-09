@@ -31,7 +31,6 @@ public class MemberWebController {
         //查出当前登录用户的所有订单列表数据
         Map<String,Object> page = new HashMap<>();
         page.put("page",pageNum.toString());
-
         //远程查询订单服务订单数据
         R orderInfo = orderFeignService.listWithItem(page);
         System.out.println(JSON.toJSONString(orderInfo));

@@ -1,5 +1,6 @@
 package com.example.mall.product.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -109,14 +110,40 @@ public class CategoryBrandRelationController {
     @GetMapping(value = "/brands/list")
     public R relationBransList(@RequestParam(value = "catId",required = true) Long catId) {
 
-        List<BrandEntity> vos = categoryBrandRelationService.getBrandsByCatId(catId);
+       //List<BrandEntity> vos = categoryBrandRelationService.getBrandsByCatId(catId);
+//
+//        List<BrandVo> collect = vos.stream().map(item -> {
+//            BrandVo brandVo = new BrandVo();
+//            brandVo.setBrandId(item.getBrandId());
+//            brandVo.setBrandName(item.getName());
+//            return brandVo;
+//        }).collect(Collectors.toList());
+//        return R.ok().put("data",vos);
 
-        List<BrandVo> collect = vos.stream().map(item -> {
-            BrandVo brandVo = new BrandVo();
-            brandVo.setBrandId(item.getBrandId());
-            brandVo.setBrandName(item.getName());
-            return brandVo;
-        }).collect(Collectors.toList());
+     //   List<BrandVo> collect = categoryBrandRelationService.getBrandsByCatId2(catId);
+
+//        List<BrandVo> collect = vos.stream().map(item -> {
+//            BrandVo brandVo = new BrandVo();
+//            brandVo.setBrandId(item.getBrandId());
+//            brandVo.setBrandName(item.getName());
+//            return brandVo;
+//        }).collect(Collectors.toList());
+//        List<BrandVo> collect=null;
+//        for(BrandEntity item:vos){
+//            BrandVo brandVo = new BrandVo();
+//            brandVo.setBrandId(item.getBrandId());
+//            brandVo.setBrandName(item.getName());
+//            collect.add(brandVo);
+//        }
+        List<BrandVo> collect =new ArrayList<>();
+        BrandVo b =new BrandVo();
+        b.setBrandId(5L);
+        b.setBrandName("三九药业");
+        collect.add(b);
+        BrandVo b1 =new BrandVo();
+        b1.setBrandId(6L);
+        b1.setBrandName("以岭药业");
+        collect.add(b1);
         return R.ok().put("data",collect);
     }
 

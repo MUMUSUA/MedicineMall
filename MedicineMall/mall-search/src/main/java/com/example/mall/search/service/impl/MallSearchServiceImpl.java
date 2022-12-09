@@ -188,8 +188,8 @@ public class MallSearchServiceImpl implements MallSearchService {
         result.setTotal(total);
 
         //5、2分页信息-总页码-计算
-        int totalPages = (int)total % EsConstant.PRODUCT_PAGESIZE == 0 ?
-                (int)total / EsConstant.PRODUCT_PAGESIZE : ((int)total / EsConstant.PRODUCT_PAGESIZE + 1);
+        int totalPages = (int)total % 12 == 0 ?
+                (int)total / 12 : ((int)total / 12 + 1);
         result.setTotalPages(totalPages);
 
         List<Integer> pageNavs = new ArrayList<>();
@@ -358,8 +358,8 @@ public class MallSearchServiceImpl implements MallSearchService {
         }
 
         //分页
-        searchSourceBuilder.from((param.getPageNum()-1)*EsConstant.PRODUCT_PAGESIZE);
-        searchSourceBuilder.size(EsConstant.PRODUCT_PAGESIZE);
+        searchSourceBuilder.from((param.getPageNum()-1)*12);
+        searchSourceBuilder.size(12);
 
         //高亮
         if(!StringUtils.isEmpty(param.getKeyword())){

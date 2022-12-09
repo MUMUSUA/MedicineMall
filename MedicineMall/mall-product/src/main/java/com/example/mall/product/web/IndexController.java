@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -32,19 +33,26 @@ public class IndexController {
 
         //1、查出所有的一级分类
         List<CategoryEntity> categoryEntities = categoryService.getLevel1Categorys();
-        model.addAttribute("categories",categoryEntities);
+        List<CategoryEntity> entities = categoryService.listWithTree();
+        model.addAttribute("categories",entities);
 
         return "index";
     }
 
 
+
     //index/json/catalog.json
     @GetMapping(value = "/index/catelog.json")
     @ResponseBody
-    public Map<String, List<Catelog2Vo>> getCatalogJson() {
+    public Map<String, List<Catelog2Vo>> getCatalogJson(Model model) {
 
         Map<String, List<Catelog2Vo>> catalogJson = categoryService.getCatalogJson();
-
+        List<List<Catelog2Vo>> catalog=new ArrayList<>();
+        for (List<Catelog2Vo> value : catalogJson.values()) {
+                        catalog.add(value);
+        }
+        List<CategoryEntity> entities = categoryService.listWithTree();
+        model.addAttribute("catalog",entities);
         return catalogJson;
 
     }

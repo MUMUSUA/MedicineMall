@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 整个购物车
  */
-public class Cart{
+public class Cart {
     List<CartItem> items;//购物项
     private Integer countNum;//商品数量
     private Integer countType; //商品类型数量
